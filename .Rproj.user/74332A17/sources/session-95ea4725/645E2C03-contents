@@ -1,0 +1,691 @@
+
+data <- traindata
+n_mcmc <- 3000
+mc_cores <- 4
+p <- ncol(data[[1]]$X)
+print(paste("n =", nrow(data[[1]]$X)))
+print(paste("p =", ncol(data[[1]]$X)))
+n_sim <- length(data)
+print(paste("n_sim =", n_sim))
+true_beta_re <- data[[1]]$beta_re
+true_beta_im <- data[[1]]$beta_im
+idx_re <- true_beta_re != 0
+idx_im <- true_beta_im != 0
+
+par_info <- set_par(p = p, prior = "bl", is_cplx = FALSE)
+
+system.time(
+  sim_re_bl <- parallel::mclapply(data, FUN = function(d) {
+    gibbs_bl_cpp_full(n_mcmc = n_mcmc, start_lst = par_info$start_lst, 
+                      name_par = par_info$name_par, 
+                      y = d$y_re, X = d$X)
+  }, mc.cores = mc_cores)
+)
+
+sim_re_bl <- lapply(sim_re_bl, function(data) {
+  colnames(data$draws) <- par_info$name_par
+  return(data)
+})
+
+system.time(
+  sim_im_bl <- parallel::mclapply(data, FUN = function(d) {
+    gibbs_bl_cpp_full(n_mcmc = n_mcmc, start_lst = par_info$start_lst, 
+                      name_par = par_info$name_par, 
+                      y = d$y_im, X = d$X)
+  }, mc.cores = mc_cores)
+)
+sim_im_bl <- lapply(sim_im_bl, function(data) {
+  colnames(data$draws) <- par_info$name_par
+  return(data)
+})
+
+par_info <- set_par(p = p, prior = "bl", is_cplx = TRUE)
+
+system.time(
+  sim_cbl <- parallel::mclapply(data, FUN = function(d) {
+    gibbs_cbl_cpp_full(n_mcmc = n_mcmc, par_info$start_lst, 
+                       name_par = par_info$name_par, 
+                       y = c(d$y_re, d$y_im), 
+                       X = as.matrix(Matrix::bdiag(d$X, d$X)))
+  }, mc.cores = mc_cores)
+)
+
+sim_cbl <- lapply(sim_cbl, function(data) {
+  colnames(data$draws) <- par_info$name_par
+  return(data)
+})
+
+par_info <- set_par(p = p, prior = "t", is_cplx = FALSE)
+
+system.time(
+  sim_re_t <- parallel::mclapply(data, FUN = function(d) {
+    gibbs_t_cpp_full(n_mcmc = n_mcmc, start_lst = par_info$start_lst, 
+                      name_par = par_info$name_par, 
+                      y = d$y_re, X = d$X)
+  }, mc.cores = mc_cores)
+)
+
+sim_re_t <- lapply(sim_re_t, function(data) {
+  colnames(data$draws$draws) <- par_info$name_par
+  return(data)
+})
+
+system.time(
+  sim_im_t <- parallel::mclapply(data, FUN = function(d) {
+    gibbs_t_cpp_full(n_mcmc = n_mcmc, start_lst = par_info$start_lst, 
+                     name_par = par_info$name_par, 
+                     y = d$y_im, X = d$X)
+  }, mc.cores = mc_cores)
+)
+
+sim_im_t <- lapply(sim_im_t, function(data) {
+  colnames(data$draws$draws) <- par_info$name_par
+  return(data)
+})
+
+par_info <- set_par(p = p, prior = "t", is_cplx = TRUE)
+
+system.time(
+  sim_ct <- parallel::mclapply(data, FUN = function(d) {
+    gibbs_ct_cpp_full(n_mcmc = n_mcmc, par_info$start_lst, 
+                       name_par = par_info$name_par, 
+                       y = c(d$y_re, d$y_im), 
+                       X = as.matrix(Matrix::bdiag(d$X, d$X)))
+  }, mc.cores = mc_cores)
+)
+
+
+par_info <- set_par(p = p, prior = "gdp", is_cplx = FALSE)
+
+system.time(
+  sim_re_gdp <- parallel::mclapply(data, FUN = function(d) {
+    gibbs_gdp_cpp_full(n_mcmc = n_mcmc, start_lst = par_info$start_lst, 
+                     name_par = par_info$name_par, 
+                     y = d$y_re, X = d$X)
+  }, mc.cores = mc_cores)
+)
+
+sim_re_gdp <- lapply(sim_re_gdp, function(data) {
+  colnames(data$draws$draws) <- par_info$name_par
+  return(data)
+})
+
+system.time(
+  sim_im_gdp <- parallel::mclapply(data, FUN = function(d) {
+    gibbs_gdp_cpp_full(n_mcmc = n_mcmc, par_info$start_lst, 
+                       name_par = par_info$name_par, 
+                       y = d$y_im, X = d$X)
+  }, mc.cores = mc_cores)
+)
+
+sim_im_gdp <- lapply(sim_im_gdp, function(data) {
+  colnames(data$draws$draws) <- par_info$name_par
+  return(data)
+})
+
+
+par_info <- set_par(p = p, prior = "gdp", is_cplx = TRUE)
+
+system.time(
+  sim_cgdp <- parallel::mclapply(data, FUN = function(d) {
+    gibbs_cgdp_cpp_full(n_mcmc = n_mcmc, par_info$start_lst, 
+                      name_par = par_info$name_par, 
+                      y = c(d$y_re, d$y_im), 
+                      X = as.matrix(Matrix::bdiag(d$X, d$X)))
+  }, mc.cores = mc_cores)
+)
+
+sim_cgdp <- lapply(sim_cgdp, function(data) {
+  colnames(data$draws) <- par_info$name_par
+  return(data)
+})
+
+
+
+# results ana for t
+system.time(
+  cm_t <- parallel::mclapply(1:n_sim, FUN = function(k) {
+    gen_conf_mat(
+      beta_re_sample = sim_re_t[[k]]$draws$draws[, 1:p],
+      beta_im_sample = sim_im_t[[k]]$draws$draws[, 1:p],
+      true_beta_re = true_beta_re,
+      true_beta_im = true_beta_im)
+  }, mc.cores = mc_cores)
+)
+
+## cplx
+system.time(
+  cm_ct <- parallel::mclapply(1:n_sim, FUN = function(k) {
+    gen_conf_mat_cplx(
+      beta_sample = sim_ct[[k]]$draws$draws[, 1:(2*p)],
+      true_beta_re = true_beta_re,
+      true_beta_im = true_beta_im)
+  }, mc.cores = mc_cores)
+)
+
+f1_re_t <- sapply(cm_t, function(x) apply(x$re, 2, f1))
+f1_im_t <- sapply(cm_t, function(x) apply(x$im, 2, f1))
+f1_both_t <- sapply(cm_t, function(x) apply(x$both, 2, f1))
+f1_cp_t <- sapply(cm_ct, function(x) apply(x, 2, f1))
+
+summary_f1_re_t <- apply(f1_re_t, 1, function(x) {
+  c(mean = mean(x), sd = sd(x), median = median(x), 
+    min = min(x), max = max(x))
+})
+t(summary_f1_re_t)
+
+summary_f1_im_t <- apply(f1_im_t, 1, function(x) {
+  c(mean = mean(x), sd = sd(x), median = median(x), 
+    min = min(x), max = max(x))
+})
+
+summary_f1_both_t <- apply(f1_both_t, 1, function(x) {
+  c(mean = mean(x), sd = sd(x), median = median(x), 
+    min = min(x), max = max(x))
+})
+
+t(summary_f1_both_t)
+
+boxplot(t(f1_re_t), main = "F1 Real", 
+        xlab = "Confidence Interval", ylab = "F1 Score")
+boxplot(t(f1_im_t), main = "F1 Imaginary", 
+        xlab = "Confidence Interval", ylab = "F1 Score")
+boxplot(t(f1_both_t), main = "F1 Both", 
+        xlab = "Confidence Interval", ylab = "F1 Score")
+
+library(tidyverse)
+re_im_color <- "#90a0c8"
+cplx_color <- "#f19e7b"
+prob_grid <- c(seq(0.05, 0.95, by = 0.05), 0.97, 0.99)
+f1_tib <- tibble("f1" = c(c(t(f1_both_t)), c(t(f1_cp_t))), 
+                 "ci" = rep(x = paste0(prob_grid * 100, "%"), each = 100, times = 2),
+                 "type" = c(rep("Re & Im", length(c(t(f1_both_t)))), 
+                            rep("Cplx", length(c(t(f1_cp_t))))))
+f1_tib |> 
+  mutate(ci = factor(ci, levels = paste0(prob_grid * 100, "%"))) |> 
+  ggplot(aes(x = ci, y = f1, fill = type)) + 
+  geom_boxplot(alpha = 0.7) +
+  geom_boxplot() + 
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(size = 18, hjust = 0.5),
+    axis.title.x = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.text = element_text(size = 11)
+  ) +
+  scale_fill_manual(values = c("Re & Im" = re_im_color, "Cplx" = cplx_color)) +
+  labs(
+    title = "F1 Score by CI and Type",
+    fill = "Model Type",
+    x = "Confidence Interval",
+    y = "F1 Score"
+  )
+
+## PA
+beta_re_t <- lapply(sim_re_t, function(sim) {
+  sim$draws$draws[, 1:p]
+})
+beta_im_t <- lapply(sim_im_t, function(sim) {
+  sim$draws$draws[, 1:p]
+})
+
+## p x n_sim matrix
+mse_beta_re_t <- sapply(beta_re_t, function(beta) {
+  mse_sample(beta, true_beta_re)
+})
+mse_beta_im_t <- sapply(beta_im_t, function(beta) {
+  mse_sample(beta, true_beta_im)
+})
+
+## find posterior mean
+pos_mean_beta_re_t <- sapply(beta_re_t, function(x) 
+  apply(x, MARGIN = 2, FUN = mean))
+
+pos_mean_beta_im_t <- sapply(beta_re_t, function(x) 
+  apply(x, MARGIN = 2, FUN = mean))
+
+mse_beta_mean_re_t <- apply(pos_mean_beta_re_t, 2, mse, true_beta_re)
+mse_beta_mean_im_t <- apply(pos_mean_beta_re_t, 2, mse, true_beta_im)
+
+mse_beta_mean_re_1 <- apply(pos_mean_beta_re_t[idx_re, ], 2, mse, 
+                            true_beta_re[idx_re])
+mse_beta_mean_im_1 <- apply(pos_mean_beta_re_t[idx_im, ], 2, mse, 
+                            true_beta_im[idx_im])
+
+mse_beta_mean_re_im_1 <- mse_beta_mean_re_1 + mse_beta_mean_im_1
+
+mse_beta_mean_re_0 <- apply(pos_mean_beta_re_t[!idx_re, ], 2, mse, 
+                            true_beta_re[!idx_re])
+mse_beta_mean_im_0 <- apply(pos_mean_beta_re_t[!idx_im, ], 2, mse, 
+                            true_beta_im[!idx_im])
+
+mse_beta_mean_re_im_0 <- mse_beta_mean_re_0 + mse_beta_mean_im_0
+## =========
+## Complex t
+## =========
+beta_ct <- lapply(sim_ct, function(sim) {
+  sim$draws$draws[, 1:(2*p)]
+})
+
+mse_beta_ct <- sapply(beta_ct, function(beta) {
+  mse_sample(beta, c(true_beta_re, true_beta_im))
+})
+
+pos_mean_beta_ct <- sapply(beta_ct, function(x) 
+  apply(x, MARGIN = 2, FUN = mean))
+
+## use posterior mean as the pt est to compute MSE
+mse_beta_mean_ct <- apply(pos_mean_beta_ct, 2,
+                          mse, c(true_beta_re, true_beta_im))
+
+mse_beta_mean_ct_1 <- apply(pos_mean_beta_ct[c(idx_re, idx_im), ], 2, mse, 
+                            c(true_beta_re[idx_re], true_beta_im[idx_im]))
+
+
+
+
+mse_beta_mean_ct_0 <- apply(pos_mean_beta_ct[!c(idx_re, idx_im), ], 2, mse, 
+                            c(true_beta_re[!idx_re], true_beta_im[!idx_im]))
+
+data_0 <- data.frame(
+  MSE = c(mse_beta_mean_re_im_0, mse_beta_mean_ct_0),
+  Model = factor(rep(c("Re & Im", "Cplx"), each = length(mse_beta_mean_re_im_0))),
+  Group = "0"
+)
+
+data_1 <- data.frame(
+  MSE = c(mse_beta_mean_re_im_1, mse_beta_mean_ct_1),
+  Model = factor(rep(c("Re & Im", "Cplx"), each = length(mse_beta_mean_re_im_1))),
+  Group = "1"
+)
+
+data <- rbind(data_0, data_1)
+
+ggplot(data, aes(x = MSE, fill = Model)) +
+  geom_histogram(alpha = 0.7, position = "identity", bins = 40) +
+  facet_wrap(~ Group, scales = "free_y") +
+  scale_fill_manual(values = c("Re & Im" = re_im_color, "Cplx" = cplx_color)) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(hjust = 0.5, size = 18, face = "bold"),
+    plot.margin = margin(t = 20, b = 10, l = 8, r = 15),  
+    axis.title.x = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.text = element_text(size = 11)
+  ) +
+  labs(
+    title = "Comparison of MSE Distributions for 0 and 1",
+    x = "MSE Values",
+    y = "Frequency",
+    fill = "Model Type"
+  )
+
+
+
+
+## results ana for lasso
+data <- traindata
+
+system.time(
+  cm_bl <- parallel::mclapply(1:n_sim, FUN = function(k) {
+    gen_conf_mat(
+      beta_re_sample = sim_re_bl[[k]]$draws[, 1:p],
+      beta_im_sample = sim_im_bl[[k]]$draws[, 1:p],
+      true_beta_re = true_beta_re,
+      true_beta_im = true_beta_im)
+  }, mc.cores = mc_cores)
+)
+
+## Please add other necessary objects for variable selection
+
+## cplx
+system.time(
+  cm_cbl <- parallel::mclapply(1:n_sim, FUN = function(k) {
+    gen_conf_mat_cplx(
+      beta_sample = sim_cbl[[k]]$draws[, 1:(2*p)],
+      true_beta_re = true_beta_re,
+      true_beta_im = true_beta_im)
+  }, mc.cores = mc_cores)
+)
+
+f1_re_bl <- sapply(cm_bl, function(x) apply(x$re, 2, f1))
+f1_im_bl <- sapply(cm_bl, function(x) apply(x$im, 2, f1))
+f1_both_bl <- sapply(cm_bl, function(x) apply(x$both, 2, f1))
+f1_cp_bl <- sapply(cm_cbl, function(x) apply(x, 2, f1))
+
+summary_f1_re_bl <- apply(f1_re_bl, 1, function(x) {
+  c(mean = mean(x), sd = sd(x), median = median(x), 
+    min = min(x), max = max(x))
+})
+t(summary_f1_re_bl)
+
+summary_f1_im_bl <- apply(f1_im_bl, 1, function(x) {
+  c(mean = mean(x), sd = sd(x), median = median(x), 
+    min = min(x), max = max(x))
+})
+
+summary_f1_both_bl <- apply(f1_both_bl, 1, function(x) {
+  c(mean = mean(x), sd = sd(x), median = median(x), 
+    min = min(x), max = max(x))
+})
+
+t(summary_f1_both_bl)
+
+boxplot(t(f1_re_bl), main = "F1 Real", 
+        xlab = "Confidence Interval", ylab = "F1 Score")
+boxplot(t(f1_im_bl), main = "F1 Imaginary", 
+        xlab = "Confidence Interval", ylab = "F1 Score")
+boxplot(t(f1_both_bl), main = "F1 Both", 
+        xlab = "Confidence Interval", ylab = "F1 Score")
+
+library(tidyverse)
+re_im_color <- "#90a0c8"
+cplx_color <- "#f19e7b"
+prob_grid <- c(seq(0.05, 0.95, by = 0.05), 0.97, 0.99)
+f1_blib <- tibble("f1" = c(c(t(f1_both_bl)), c(t(f1_cp_bl))), 
+                  "ci" = rep(x = paste0(prob_grid * 100, "%"), each = 100, times = 2),
+                  "type" = c(rep("Re & Im", length(c(t(f1_both_bl)))), 
+                             rep("Cplx", length(c(t(f1_cp_bl))))))
+f1_blib |> 
+  mutate(ci = factor(ci, levels = paste0(prob_grid * 100, "%"))) |> 
+  ggplot(aes(x = ci, y = f1, fill = type)) + 
+  geom_boxplot(alpha = 0.7) +
+  geom_boxplot() + 
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(size = 18, hjust = 0.5),
+    axis.title.x = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.text = element_text(size = 11)
+  ) +
+  scale_fill_manual(values = c("Re & Im" = re_im_color, "Cplx" = cplx_color)) +
+  labs(
+    title = "F1 Score by CI and Type",
+    fill = "Model Type",
+    x = "Confidence Interval",
+    y = "F1 Score"
+  )
+
+## PA
+beta_re_bl <- lapply(sim_re_bl, function(sim) {
+  sim$draws[, 1:p]
+})
+beta_im_bl <- lapply(sim_im_bl, function(sim) {
+  sim$draws[, 1:p]
+})
+
+## p x n_sim matrix
+mse_beta_re_bl <- sapply(beta_re_bl, function(beta) {
+  mse_sample(beta, true_beta_re)
+})
+mse_beta_im_bl <- sapply(beta_im_bl, function(beta) {
+  mse_sample(beta, true_beta_im)
+})
+
+## find posterior mean
+pos_mean_beta_re_bl <- sapply(beta_re_bl, function(x) 
+  apply(x, MARGIN = 2, FUN = mean))
+
+pos_mean_beta_im_bl <- sapply(beta_re_bl, function(x) 
+  apply(x, MARGIN = 2, FUN = mean))
+
+mse_beta_mean_re_bl <- apply(pos_mean_beta_re_bl, 2, mse, true_beta_re)
+mse_beta_mean_im_bl <- apply(pos_mean_beta_re_bl, 2, mse, true_beta_im)
+
+mse_beta_mean_re_1 <- apply(pos_mean_beta_re_bl[idx_re, ], 2, mse, 
+                            true_beta_re[idx_re])
+mse_beta_mean_im_1 <- apply(pos_mean_beta_re_bl[idx_im, ], 2, mse, 
+                            true_beta_im[idx_im])
+
+mse_beta_mean_re_im_1 <- mse_beta_mean_re_1 + mse_beta_mean_im_1
+
+mse_beta_mean_re_0 <- apply(pos_mean_beta_re_bl[!idx_re, ], 2, mse, 
+                            true_beta_re[!idx_re])
+mse_beta_mean_im_0 <- apply(pos_mean_beta_re_bl[!idx_im, ], 2, mse, 
+                            true_beta_im[!idx_im])
+
+mse_beta_mean_re_im_0 <- mse_beta_mean_re_0 + mse_beta_mean_im_0
+## =========
+## Complex bl
+## =========
+beta_cbl <- lapply(sim_cbl, function(sim) {
+  sim$draws[, 1:(2*p)]
+})
+
+mse_beta_cbl <- sapply(beta_cbl, function(beta) {
+  mse_sample(beta, c(true_beta_re, true_beta_im))
+})
+
+pos_mean_beta_cbl <- sapply(beta_cbl, function(x) 
+  apply(x, MARGIN = 2, FUN = mean))
+
+## use posterior mean as the pt est to compute MSE
+mse_beta_mean_cbl <- apply(pos_mean_beta_cbl, 2,
+                           mse, c(true_beta_re, true_beta_im))
+
+mse_beta_mean_cbl_1 <- apply(pos_mean_beta_cbl[c(idx_re, idx_im), ], 2, mse, 
+                             c(true_beta_re[idx_re], true_beta_im[idx_im]))
+
+
+
+
+mse_beta_mean_cbl_0 <- apply(pos_mean_beta_cbl[!c(idx_re, idx_im), ], 2, mse, 
+                             c(true_beta_re[!idx_re], true_beta_im[!idx_im]))
+
+data_0 <- data.frame(
+  MSE = c(mse_beta_mean_re_im_0, mse_beta_mean_cbl_0),
+  Model = factor(rep(c("Re & Im", "Cplx"), each = length(mse_beta_mean_re_im_0))),
+  Group = "0"
+)
+
+data_1 <- data.frame(
+  MSE = c(mse_beta_mean_re_im_1, mse_beta_mean_cbl_1),
+  Model = factor(rep(c("Re & Im", "Cplx"), each = length(mse_beta_mean_re_im_1))),
+  Group = "1"
+)
+
+data <- rbind(data_0, data_1)
+
+ggplot(data, aes(x = MSE, fill = Model)) +
+  geom_histogram(alpha = 0.7, position = "identity", bins = 40) +
+  facet_wrap(~ Group, scales = "free_y") +
+  scale_fill_manual(values = c("Re & Im" = re_im_color, "Cplx" = cplx_color)) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(hjust = 0.5, size = 18, face = "bold"),
+    plot.margin = margin(t = 20, b = 10, l = 8, r = 15),  
+    axis.title.x = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.text = element_text(size = 11)
+  ) +
+  labs(
+    title = "Comparison of MSE Distributions for 0 and 1",
+    x = "MSE Values",
+    y = "Frequency",
+    fill = "Model Type"
+  )
+
+## result ana for gdp
+data <- traindata
+system.time(
+  cm_gdp <- parallel::mclapply(1:n_sim, FUN = function(k) {
+    gen_conf_mat(
+      beta_re_sample = sim_re_gdp[[k]]$draws$draws[, 1:p],
+      beta_im_sample = sim_im_gdp[[k]]$draws$draws[, 1:p],
+      true_beta_re = true_beta_re,
+      true_beta_im = true_beta_im)
+  }, mc.cores = mc_cores)
+)
+
+system.time(
+  cm_cgdp <- parallel::mclapply(1:n_sim, FUN = function(k) {
+    gen_conf_mat_cplx(
+      beta_sample = sim_cgdp[[k]]$draws[, 1:(2*p)],
+      true_beta_re = true_beta_re,
+      true_beta_im = true_beta_im)
+  }, mc.cores = mc_cores)
+)
+
+f1_re_gdp <- sapply(cm_gdp, function(x) apply(x$re, 2, f1))
+f1_im_gdp <- sapply(cm_gdp, function(x) apply(x$im, 2, f1))
+f1_both_gdp <- sapply(cm_gdp, function(x) apply(x$both, 2, f1))
+f1_cp_gdp <- sapply(cm_cgdp, function(x) apply(x, 2, f1))
+
+summary_f1_re_gdp <- apply(f1_re_gdp, 1, function(x) {
+  c(mean = mean(x), sd = sd(x), median = median(x), 
+    min = min(x), max = max(x))
+})
+t(summary_f1_re_gdp)
+
+summary_f1_im_gdp <- apply(f1_im_gdp, 1, function(x) {
+  c(mean = mean(x), sd = sd(x), median = median(x), 
+    min = min(x), max = max(x))
+})
+
+summary_f1_both_gdp <- apply(f1_both_gdp, 1, function(x) {
+  c(mean = mean(x), sd = sd(x), median = median(x), 
+    min = min(x), max = max(x))
+})
+
+t(summary_f1_both_gdp)
+
+boxplot(t(f1_re_gdp), main = "F1 Real", 
+        xlab = "Confidence Interval", ylab = "F1 Score")
+boxplot(t(f1_im_gdp), main = "F1 Imaginary", 
+        xlab = "Confidence Interval", ylab = "F1 Score")
+boxplot(t(f1_both_gdp), main = "F1 Both", 
+        xlab = "Confidence Interval", ylab = "F1 Score")
+
+library(tidyverse)
+re_im_color <- "#90a0c8"
+cplx_color <- "#f19e7b"
+prob_grid <- c(seq(0.05, 0.95, by = 0.05), 0.97, 0.99)
+f1_gdpib <- tibble("f1" = c(c(t(f1_both_gdp)), c(t(f1_cp_gdp))), 
+                   "ci" = rep(x = paste0(prob_grid * 100, "%"), each = 100, times = 2),
+                   "type" = c(rep("Re & Im", length(c(t(f1_both_gdp)))), 
+                              rep("Cplx", length(c(t(f1_cp_gdp))))))
+f1_gdpib |> 
+  mutate(ci = factor(ci, levels = paste0(prob_grid * 100, "%"))) |> 
+  ggplot(aes(x = ci, y = f1, fill = type)) + 
+  geom_boxplot(alpha = 0.7) +
+  geom_boxplot() + 
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(size = 18, hjust = 0.5),
+    axis.title.x = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.text = element_text(size = 11)
+  ) +
+  scale_fill_manual(values = c("Re & Im" = re_im_color, "Cplx" = cplx_color)) +
+  labs(
+    title = "F1 Score by CI and Type",
+    fill = "Model Type",
+    x = "Confidence Interval",
+    y = "F1 Score"
+  )
+
+## PA
+beta_re_gdp <- lapply(sim_re_gdp, function(sim) {
+  sim$draws$draws[, 1:p]
+})
+beta_im_gdp <- lapply(sim_im_gdp, function(sim) {
+  sim$draws$draws[, 1:p]
+})
+
+## p x n_sim matrix
+mse_beta_re_gdp <- sapply(beta_re_gdp, function(beta) {
+  mse_sample(beta, true_beta_re)
+})
+mse_beta_im_gdp <- sapply(beta_im_gdp, function(beta) {
+  mse_sample(beta, true_beta_im)
+})
+
+## find posterior mean
+pos_mean_beta_re_gdp <- sapply(beta_re_gdp, function(x) 
+  apply(x, MARGIN = 2, FUN = mean))
+
+pos_mean_beta_im_gdp <- sapply(beta_re_gdp, function(x) 
+  apply(x, MARGIN = 2, FUN = mean))
+
+mse_beta_mean_re_gdp <- apply(pos_mean_beta_re_gdp, 2, mse, true_beta_re)
+mse_beta_mean_im_gdp <- apply(pos_mean_beta_re_gdp, 2, mse, true_beta_im)
+
+mse_beta_mean_re_1 <- apply(pos_mean_beta_re_gdp[idx_re, ], 2, mse, 
+                            true_beta_re[idx_re])
+mse_beta_mean_im_1 <- apply(pos_mean_beta_re_gdp[idx_im, ], 2, mse, 
+                            true_beta_im[idx_im])
+
+mse_beta_mean_re_im_1 <- mse_beta_mean_re_1 + mse_beta_mean_im_1
+
+mse_beta_mean_re_0 <- apply(pos_mean_beta_re_gdp[!idx_re, ], 2, mse, 
+                            true_beta_re[!idx_re])
+mse_beta_mean_im_0 <- apply(pos_mean_beta_re_gdp[!idx_im, ], 2, mse, 
+                            true_beta_im[!idx_im])
+
+mse_beta_mean_re_im_0 <- mse_beta_mean_re_0 + mse_beta_mean_im_0
+## =========
+## Complex t
+## =========
+beta_cgdp <- lapply(sim_cgdp, function(sim) {
+  sim$draws[, 1:(2*p)]
+})
+
+mse_beta_cgdp <- sapply(beta_cgdp, function(beta) {
+  mse_sample(beta, c(true_beta_re, true_beta_im))
+})
+
+pos_mean_beta_cgdp <- sapply(beta_cgdp, function(x) 
+  apply(x, MARGIN = 2, FUN = mean))
+
+## use posterior mean as the pt est to compute MSE
+mse_beta_mean_cgdp <- apply(pos_mean_beta_cgdp, 2,
+                            mse, c(true_beta_re, true_beta_im))
+
+mse_beta_mean_cgdp_1 <- apply(pos_mean_beta_cgdp[c(idx_re, idx_im), ], 2, mse, 
+                              c(true_beta_re[idx_re], true_beta_im[idx_im]))
+
+
+
+
+mse_beta_mean_cgdp_0 <- apply(pos_mean_beta_cgdp[!c(idx_re, idx_im), ], 2, mse, 
+                              c(true_beta_re[!idx_re], true_beta_im[!idx_im]))
+
+data_0 <- data.frame(
+  MSE = c(mse_beta_mean_re_im_0, mse_beta_mean_cgdp_0),
+  Model = factor(rep(c("Re & Im", "Cplx"), each = length(mse_beta_mean_re_im_0))),
+  Group = "0"
+)
+
+data_1 <- data.frame(
+  MSE = c(mse_beta_mean_re_im_1, mse_beta_mean_cgdp_1),
+  Model = factor(rep(c("Re & Im", "Cplx"), each = length(mse_beta_mean_re_im_1))),
+  Group = "1"
+)
+
+data <- rbind(data_0, data_1)
+
+ggplot(data, aes(x = MSE, fill = Model)) +
+  geom_histogram(alpha = 0.7, position = "identity", bins = 40) +
+  facet_wrap(~ Group, scales = "free_y") +
+  scale_fill_manual(values = c("Re & Im" = re_im_color, "Cplx" = cplx_color)) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(hjust = 0.5, size = 18, face = "bold"),
+    plot.margin = margin(t = 20, b = 10, l = 8, r = 15),  
+    axis.title.x = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.text = element_text(size = 11)
+  ) +
+  labs(
+    title = "Comparison of MSE Distributions for 0 and 1",
+    x = "MSE Values",
+    y = "Frequency",
+    fill = "Model Type"
+  )
+

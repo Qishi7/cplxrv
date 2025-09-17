@@ -1,0 +1,21 @@
+Package: cplxrv
+Type: Package
+Title: What the Package Does (Short Line)
+Version: 1.0
+Date: 2025-01-13
+Author: Who wrote it
+Maintainer: Who to complain to <yourfault@somewhere.net>
+Description: More about what it does (maybe more than one line).
+License: What license is it under?
+Encoding: UTF-8
+Imports: 
+    Rcpp (>= 1.0.14),
+    stats,
+    emulator,
+    LaplacesDemon,
+    Matrix,
+    mvtnorm
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo
+RoxygenNote: 7.3.2

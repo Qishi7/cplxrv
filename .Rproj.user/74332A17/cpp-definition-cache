@@ -1,0 +1,753 @@
+[
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/cplx2real_cov_cpp.cpp",
+        "file_last_write": 1736754164.0,
+        "definitions": [
+            {
+                "usr": "c:@F@cplx2real_cov_cpp#$@N@arma@S@Mat>#d#$@N@std@N@__1@S@complex>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "cplx2real_cov_cpp(arma::mat, arma::cx_double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/cplx2real_cov_cpp.cpp",
+                "line": 6,
+                "column": 11,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/dmvn_cpp.cpp",
+        "file_last_write": 1736759888.0,
+        "definitions": [
+            {
+                "usr": "c:@F@dmvn_cpp#$@N@arma@S@Mat>#d#$@N@arma@S@Row>#d#S0_#b#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "dmvn_cpp(arma::mat, arma::rowvec, arma::mat, bool)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/dmvn_cpp.cpp",
+                "line": 8,
+                "column": 11,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/eta_to_rho_cpp.cpp",
+        "file_last_write": 1736759248.0,
+        "definitions": [
+            {
+                "usr": "c:@F@eta_to_rho_cpp#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "eta_to_rho_cpp(double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/eta_to_rho_cpp.cpp",
+                "line": 5,
+                "column": 8,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/get_tune_cpp.cpp",
+        "file_last_write": 1736755527.0,
+        "definitions": [
+            {
+                "usr": "c:@F@get_tune_cpp#d#d#I#d#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "get_tune_cpp(double, double, int, double, double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/get_tune_cpp.cpp",
+                "line": 6,
+                "column": 8,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/inv_cpp.cpp",
+        "file_last_write": 1736755061.0,
+        "definitions": [
+            {
+                "usr": "c:@F@inv_cpp#$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "inv_cpp(arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/inv_cpp.cpp",
+                "line": 8,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/invtau2j_bl_cpp.cpp",
+        "file_last_write": 1736755198.0,
+        "definitions": [
+            {
+                "usr": "c:@F@invtau2j_bl_cpp#$@N@arma@S@Mat>#d#I#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "invtau2j_bl_cpp(arma::mat, int, double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/invtau2j_bl_cpp.cpp",
+                "line": 9,
+                "column": 8,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/keep_elem.cpp",
+        "file_last_write": 1736805734.0,
+        "definitions": [
+            {
+                "usr": "c:@F@keep_elem#&1$@N@arma@S@Col>#d#&1$@N@arma@S@Col>#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "keep_elem(const arma::vec &, const arma::ivec &)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/keep_elem.cpp",
+                "line": 6,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_bl_cpp.cpp",
+        "file_last_write": 1736754320.0,
+        "definitions": [
+            {
+                "usr": "c:@F@beta_bl_cpp#&$@N@arma@S@Mat>#d#S0_#d#&$@N@arma@S@Col>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "beta_bl_cpp(arma::mat &, arma::mat &, double, arma::vec &)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_bl_cpp.cpp",
+                "line": 11,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@lam2_bl_cpp#&$@N@arma@S@Col>#d#I#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "lam2_bl_cpp(arma::vec &, int, double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_bl_cpp.cpp",
+                "line": 27,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@invtau2_bl_cpp#&$@N@arma@S@Mat>#d#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "invtau2_bl_cpp(arma::mat &, double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_bl_cpp.cpp",
+                "line": 33,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sig2_bl_cpp#&$@N@arma@S@Mat>#d#S0_#S0_#S0_#&$@N@arma@S@Col>#d#I#I#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sig2_bl_cpp(arma::mat &, arma::mat &, arma::mat &, arma::mat &, arma::vec &, int, int, double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_bl_cpp.cpp",
+                "line": 40,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mcmc_bl_cpp#I#I#I#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#d#d#&S1_#&S0_#d#d#d#d#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mcmc_bl_cpp(int, int, int, arma::mat, arma::vec, double, double, arma::vec &, arma::mat &, double, double, double, double, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_bl_cpp.cpp",
+                "line": 52,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cbl_cpp.cpp",
+        "file_last_write": 1736805830.0,
+        "definitions": [
+            {
+                "usr": "c:@F@cplx2real_cov_inv_cpp#$@N@arma@S@Mat>#d#$@N@std@N@__1@S@complex>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "cplx2real_cov_inv_cpp(arma::mat, arma::cx_double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cbl_cpp.cpp",
+                "line": 22,
+                "column": 14,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mvrnormArma1#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mvrnormArma1(arma::vec, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cbl_cpp.cpp",
+                "line": 39,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mvrnormArma_inv#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mvrnormArma_inv(arma::vec, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cbl_cpp.cpp",
+                "line": 47,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@beta_cbl_cpp#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#S1_#$@N@Rcpp@S@Vector>#VI19#@N@Rcpp@ST>1#T@PreserveStorage#&$@N@arma@S@SpMat>#d#d#I#S0_#S2_#S2_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "beta_cbl_cpp(arma::vec, arma::mat, arma::mat, Rcpp::List, arma::sp_mat &, double, int, arma::vec, Rcpp::List, Rcpp::List)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cbl_cpp.cpp",
+                "line": 58,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@ga_cbl_cpp#d#d#$@N@arma@S@Col>#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "ga_cbl_cpp(double, double, arma::vec, int)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cbl_cpp.cpp",
+                "line": 83,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sig2_cbl_cpp#d#d#I#I#$@N@arma@S@Col>#d#S0_#S0_#S0_#$@N@arma@S@SpMat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sig2_cbl_cpp(double, double, int, int, arma::vec, arma::vec, arma::vec, arma::vec, arma::sp_mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cbl_cpp.cpp",
+                "line": 89,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@lam2_cbl_cpp#$@N@arma@S@Col>#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "lam2_cbl_cpp(arma::vec, double, double, int)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cbl_cpp.cpp",
+                "line": 99,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mh_log_re_cpp#d#d#$@N@arma@S@Row>#d#$@N@arma@S@Mat>#d#S1_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mh_log_re_cpp(double, double, arma::rowvec, arma::mat, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cbl_cpp.cpp",
+                "line": 105,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mh_log_im_cpp#d#d#$@N@arma@S@Row>#d#$@N@arma@S@Mat>#d#S1_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mh_log_im_cpp(double, double, arma::rowvec, arma::mat, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cbl_cpp.cpp",
+                "line": 123,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mcmc_cbl_cpp#&1I#S0_#S0_#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#d#d#S2_#&S1_#$@N@std@N@__1@S@complex>#d#S4_#&1d#S5_#d#d#&1b#S0_#d#d#d#d#&I#&b#S5_#S5_#S1_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mcmc_cbl_cpp(const int &, const int &, const int &, arma::mat, arma::vec, double, double, arma::vec, arma::mat &, arma::cx_double, arma::cx_double, const double &, const double &, double, double, const bool &, const int &, double, double, double, double, int &, bool &, const double &, const double &, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cbl_cpp.cpp",
+                "line": 143,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cgdp_cpp.cpp",
+        "file_last_write": 1736806612.0,
+        "definitions": [
+            {
+                "usr": "c:@F@beta_cgdp_cpp#&$@N@arma@S@Col>#d#&$@N@arma@S@Mat>#d#S3_#&$@N@Rcpp@S@Vector>#VI19#@N@Rcpp@ST>1#T@PreserveStorage#S2_#d#&I#S0_#S4_#S4_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "beta_cgdp_cpp(arma::vec &, arma::mat &, arma::mat, Rcpp::List &, arma::mat &, double, int &, arma::vec &, Rcpp::List &, Rcpp::List &)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cgdp_cpp.cpp",
+                "line": 22,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@ga_cgdp_cpp#$@N@arma@S@Col>#d#d#&S0_#&I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "ga_cgdp_cpp(arma::vec, double, arma::vec &, int &)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cgdp_cpp.cpp",
+                "line": 56,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sig2_cgdp_cpp#d#d#I#I#&$@N@arma@S@Col>#d#S0_#S1_#S0_#&$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sig2_cgdp_cpp(double, double, int, int, arma::vec &, arma::vec &, arma::vec, arma::vec &, arma::mat &)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cgdp_cpp.cpp",
+                "line": 64,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@lam_cgdp_cpp#&$@N@arma@S@Col>#d#d#d#d#&I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "lam_cgdp_cpp(arma::vec &, double, double, double, int &)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cgdp_cpp.cpp",
+                "line": 77,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mh_log_ratio_re_cpp_gdp#d#d#d#&$@N@arma@S@Col>#d#S0_#d#&I#&$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mh_log_ratio_re_cpp_gdp(double, double, double, arma::vec &, arma::vec &, double, int &, arma::mat &)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cgdp_cpp.cpp",
+                "line": 93,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mh_log_ratio_im_cpp_gdp#d#d#d#&$@N@arma@S@Col>#d#S0_#d#&I#&$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mh_log_ratio_im_cpp_gdp(double, double, double, arma::vec &, arma::vec &, double, int &, arma::mat &)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cgdp_cpp.cpp",
+                "line": 122,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@a_cond_log_cgdp_cpp#$@N@arma@S@Col>#d#&I#&S0_#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "a_cond_log_cgdp_cpp(arma::vec, int &, arma::vec &, double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cgdp_cpp.cpp",
+                "line": 152,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@e_cond_log_cgdp_cpp#$@N@arma@S@Col>#d#&I#&S0_#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "e_cond_log_cgdp_cpp(arma::vec, int &, arma::vec &, double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cgdp_cpp.cpp",
+                "line": 162,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mcmc_cgdp_cpp#&1I#S0_#S0_#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S2_#d#&S2_#&S1_#$@N@std@N@__1@S@complex>#d#S5_#d#d#d#d#&1b#S6_#S0_#d#d#d#d#&I#&b#&1d#S9_#S1_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mcmc_cgdp_cpp(const int &, const int &, const int &, arma::mat, arma::vec, arma::vec, double, arma::vec &, arma::mat &, arma::cx_double, arma::cx_double, double, double, double, double, const bool &, const bool &, const int &, double, double, double, double, int &, bool &, const double &, const double &, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_cgdp_cpp.cpp",
+                "line": 177,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_ct_cpp.cpp",
+        "file_last_write": 1736802677.0,
+        "definitions": [
+            {
+                "usr": "c:@F@beta_ct_cpp#&$@N@arma@S@Mat>#d#S0_#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "beta_ct_cpp(arma::mat &, arma::mat &, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_ct_cpp.cpp",
+                "line": 25,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@tau2_ct_cpp#&$@N@arma@S@Mat>#d#$@N@std@N@__1@S@complex>#d#d#I#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "tau2_ct_cpp(arma::mat &, arma::cx_double, double, int, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_ct_cpp.cpp",
+                "line": 38,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sig2_ct_cpp#d#d#I#I#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#S1_#S1_#S1_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sig2_ct_cpp(double, double, int, int, arma::vec, arma::mat, arma::mat, arma::mat, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_ct_cpp.cpp",
+                "line": 65,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mcmc_ct_cpp#I#I#I#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#d#&S1_#&S0_#$@N@std@N@__1@S@complex>#d#S4_#d#d#d#b#I#d#d#d#d#I#b#&d#d#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mcmc_ct_cpp(int, int, int, arma::mat, arma::vec, double, arma::vec &, arma::mat &, arma::cx_double, arma::cx_double, double, double, double, bool, int, double, double, double, double, int, bool, double &, double, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_ct_cpp.cpp",
+                "line": 77,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_gdp_cpp.cpp",
+        "file_last_write": 1736806609.0,
+        "definitions": [
+            {
+                "usr": "c:@F@beta_gdp_cpp#$@N@arma@S@Mat>#d#S0_#d#$@N@arma@S@Col>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "beta_gdp_cpp(arma::mat, arma::mat, double, arma::vec)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_gdp_cpp.cpp",
+                "line": 15,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@invtau_gdp_cpp#$@N@arma@S@Mat>#d#d#$@N@arma@S@Col>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "invtau_gdp_cpp(arma::mat, double, arma::vec)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_gdp_cpp.cpp",
+                "line": 29,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sig2_gdp_cpp#$@N@arma@S@Mat>#d#S0_#S0_#S0_#$@N@arma@S@Col>#d#I#I#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sig2_gdp_cpp(arma::mat, arma::mat, arma::mat, arma::mat, arma::vec, int, int, double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_gdp_cpp.cpp",
+                "line": 38,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@lamj_gdp_cpp#d#d#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "lamj_gdp_cpp(double, double, double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_gdp_cpp.cpp",
+                "line": 50,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@a_cond_log_cpp#$@N@arma@S@Col>#d#I#$@N@arma@S@Mat>#d#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "a_cond_log_cpp(arma::vec, int, arma::mat, double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_gdp_cpp.cpp",
+                "line": 57,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@e_cond_log_cpp#$@N@arma@S@Col>#d#I#$@N@arma@S@Mat>#d#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "e_cond_log_cpp(arma::vec, int, arma::mat, double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_gdp_cpp.cpp",
+                "line": 66,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mcmc_gdp_cpp#I#I#I#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#d#&S1_#&S0_#d#d#d#d#b#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mcmc_gdp_cpp(int, int, int, arma::mat, arma::vec, arma::vec, double, arma::vec &, arma::mat &, double, double, double, double, bool, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_gdp_cpp.cpp",
+                "line": 80,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_t_cpp.cpp",
+        "file_last_write": 1736760330.0,
+        "definitions": [
+            {
+                "usr": "c:@F@beta_t_cpp#$@N@arma@S@Mat>#d#S0_#d#$@N@arma@S@Col>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "beta_t_cpp(arma::mat, arma::mat, double, arma::vec)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_t_cpp.cpp",
+                "line": 13,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@tau2_t_cpp#$@N@arma@S@Mat>#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "tau2_t_cpp(arma::mat, double, double, double, int)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_t_cpp.cpp",
+                "line": 25,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sig2_t_cpp#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#S1_#S1_#S0_#I#I#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sig2_t_cpp(arma::vec, arma::mat, arma::mat, arma::mat, arma::vec, int, int, double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_t_cpp.cpp",
+                "line": 40,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mcmc_t_cpp#I#I#I#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#d#&S1_#&S0_#d#d#d#d#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mcmc_t_cpp(int, int, int, arma::mat, arma::vec, double, arma::vec &, arma::mat &, double, double, double, double, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mcmc_t_cpp.cpp",
+                "line": 52,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/mh_log_ratio_im_cpp.cpp",
+        "file_last_write": 1736756722.0,
+        "definitions": [
+            {
+                "usr": "c:@F@mh_log_ratio_im_cpp#d#d#d#$@N@arma@S@Row>#d#$@N@arma@S@Mat>#d#S1_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mh_log_ratio_im_cpp(double, double, double, arma::rowvec, arma::mat, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mh_log_ratio_im_cpp.cpp",
+                "line": 16,
+                "column": 8,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/mh_log_ratio_re_cpp.cpp",
+        "file_last_write": 1736756766.0,
+        "definitions": [
+            {
+                "usr": "c:@F@mh_log_ratio_re_cpp#d#d#d#$@N@arma@S@Row>#d#$@N@arma@S@Mat>#d#S1_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mh_log_ratio_re_cpp(double, double, double, arma::rowvec, arma::mat, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mh_log_ratio_re_cpp.cpp",
+                "line": 16,
+                "column": 8,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/mvrnormArma.cpp",
+        "file_last_write": 1736751921.0,
+        "definitions": [
+            {
+                "usr": "c:@F@mvrnormArma#I#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mvrnormArma(int, arma::vec, arma::mat)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/mvrnormArma.cpp",
+                "line": 6,
+                "column": 11,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/rcnorm_cpp.cpp",
+        "file_last_write": 1736753402.0,
+        "definitions": [
+            {
+                "usr": "c:@F@rcnorm_cpp#I#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#$@N@std@N@__1@S@complex>#d#b#b#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rcnorm_cpp(int, arma::vec, arma::mat, arma::cx_double, bool, bool)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/rcnorm_cpp.cpp",
+                "line": 10,
+                "column": 11,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/rcpp_hello_world.cpp",
+        "file_last_write": 1726619443.0,
+        "definitions": [
+            {
+                "usr": "c:@F@rcpp_hello_world#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rcpp_hello_world",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/rcpp_hello_world.cpp",
+                "line": 6,
+                "column": 6,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/rcpparma_hello_world.cpp",
+        "file_last_write": 1736748245.0,
+        "definitions": [
+            {
+                "usr": "c:@F@rcpparma_hello_world#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rcpparma_hello_world",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/rcpparma_hello_world.cpp",
+                "line": 18,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@rcpparma_outerproduct#&1$@N@arma@S@Col>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rcpparma_outerproduct(const arma::colvec &)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/rcpparma_hello_world.cpp",
+                "line": 30,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@rcpparma_innerproduct#&1$@N@arma@S@Col>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rcpparma_innerproduct(const arma::colvec &)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/rcpparma_hello_world.cpp",
+                "line": 38,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@rcpparma_bothproducts#&1$@N@arma@S@Col>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rcpparma_bothproducts(const arma::colvec &)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/rcpparma_hello_world.cpp",
+                "line": 47,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/rho_to_eta_cpp.cpp",
+        "file_last_write": 1736759241.0,
+        "definitions": [
+            {
+                "usr": "c:@F@rho_to_eta_cpp#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rho_to_eta_cpp(double, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/rho_to_eta_cpp.cpp",
+                "line": 5,
+                "column": 8,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/rrinvgauss.cpp",
+        "file_last_write": 1736754291.0,
+        "definitions": [
+            {
+                "usr": "c:@F@rrinvgauss#I#$@N@arma@S@Col>#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rrinvgauss(int, arma::vec, double)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/rrinvgauss.cpp",
+                "line": 6,
+                "column": 11,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/rrinvgauss_vec.cpp",
+        "file_last_write": 1736805278.0,
+        "definitions": [
+            {
+                "usr": "c:@F@rrinvgauss_vec#I#$@N@arma@S@Col>#d#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rrinvgauss_vec(int, arma::vec, arma::vec)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/rrinvgauss_vec.cpp",
+                "line": 6,
+                "column": 11,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/qishizhan/Documents/cplxrv/src/sample_vec.cpp",
+        "file_last_write": 1736806493.0,
+        "definitions": [
+            {
+                "usr": "c:@F@sample_vec#&1$@N@arma@S@Col>#d#I#b#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sample_vec(const arma::vec &, int, bool, const arma::vec &)",
+                "file": "/Users/qishizhan/Documents/cplxrv/src/sample_vec.cpp",
+                "line": 6,
+                "column": 11,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    }
+]
