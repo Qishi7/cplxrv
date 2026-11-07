@@ -14,3 +14,5 @@
 ^examples$
 
 ^PUBLISHING_REPORT\.md$
+
+^docs$
