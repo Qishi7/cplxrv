@@ -1,3 +1,5 @@
+> Historical local-run report. Publication to the owner's existing repository is now recorded in [PUBLISHING_REPORT.md](PUBLISHING_REPORT.md).
+
 # Final validation: cplxshrink 0.1.0.9000
 
 ## Provenance and status

@@ -21,7 +21,10 @@ source_demo,PASS,LC_ALL=en_US.UTF-8 Rscript examples/validate_new_features.R,rev
 installed_demo,PASS,"Rscript -e 'source(system.file(""examples"",""validate_new_features.R"",package=""cplxshrink"",mustWork=TRUE))'",review/logs/installed-demo.log,Installed runnable example complete
 documentation_sync,PASS,roxygen2::roxygenise(); git diff --exit-code HEAD -- NAMESPACE man,review/logs/documentation-sync.log,Generated docs synchronized; roxygen2 7.3.2
 core_and_fixture_identity,PASS,git diff --exit-code d985957c4254593ae2cc5c449d6dc3d108dd1b5b -- src/canonical.cpp R/canonical.R src/RcppExports.cpp R/RcppExports.R tests/testthat/fixtures,review/logs/core-diff.log,Exit 0; core SHA-256 also identical
-fork_and_push,NOT_AVAILABLE,GitHub profile / browser / CLI capability inspection,README_FOR_SUPERVISOR.md,No fork created or push claimed; complete local fallback delivered
-cross_platform_CI,NOT_VERIFIED,GitHub Actions configured,.github/workflows/R-CMD-check.yaml,No remote runs; macOS R4.4.1 tested locally; Linux Windows R4.1 pending
+fork_and_push,PUBLISHED_EXISTING_REPOSITORY,git push origin main,PUBLISHING_REPORT.md,At owner request replaced Qishi7/cplxrv; no new fork; published e5bc100d9767a510a36a84392cdd3a5d9d9ac947; old history preserved
+cross_platform_CI,NOT_VERIFIED_ACCOUNT_RESTRICTION,GitHub Actions run 42383210930,PUBLISHING_REPORT.md,Workflow triggered but all four jobs blocked before runner steps; no remote tests ran
 exported_source_reproduction,PASS,R CMD build cplxshrink; R CMD check cplxshrink_0.1.0.9000.tar.gz; Rscript test_local; R CMD INSTALL; source and installed demos,review/logs/archive-reproduction.log,Clean git export; exact supervisor build/check/test/install/demo sequence passes
 archive_source_preflight,PASS,Export tracked source; compare protected bytes; verify payload and checksums,review/logs/archive-validation.log,"Final ZIP verified with manifest; no .git, binaries or private data"
+publication_local_tests,PASS,LC_ALL=en_US.UTF-8 Rscript testthat::test_local,review/logs/publication/tests.log,444 expectations; 0 failures/errors/warnings/skips
+publication_local_check,PASS,LC_ALL=en_US.UTF-8 R CMD check cplxshrink_0.1.0.9000.tar.gz,review/logs/publication/check.log,0 errors 0 warnings 0 notes
+publication_remote_sha_and_history,PASS,git fetch origin main; git diff --exit-code e5bc100 origin/main; git merge-base --is-ancestor 7ef7f9e origin/main,review/logs/publication/remote-verification.log,Remote replacement SHA matches; previous main is preserved

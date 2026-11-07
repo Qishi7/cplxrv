@@ -1,3 +1,5 @@
+> Historical local-run report. Publication to the owner's existing repository is now recorded in [PUBLISHING_REPORT.md](PUBLISHING_REPORT.md).
+
 # Checkpoint 2: prediction, usability and final validation
 
 Required phases 3 and 4 are implemented and locally tested. Tested source commit:

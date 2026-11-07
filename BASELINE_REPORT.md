@@ -1,3 +1,5 @@
+> Historical local-run report. Publication to the owner's existing repository is now recorded in [PUBLISHING_REPORT.md](PUBLISHING_REPORT.md).
+
 # Checkpoint 0: frozen baseline
 
 Recorded before feature edits: upstream main/HEAD is

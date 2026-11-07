@@ -1,3 +1,5 @@
+> Historical local-run report. Publication to the owner's existing repository is now recorded in [PUBLISHING_REPORT.md](PUBLISHING_REPORT.md).
+
 # Checkpoint 1: magnitude and multiple chains
 
 Phases 1 and 2 complete. Version 0.1.0.9000, local development branch;
