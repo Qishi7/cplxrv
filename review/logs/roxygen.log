@@ -1,7 +1,0 @@
-Setting `RoxygenNote` to "7.3.2"
-ℹ Loading cplxshrink
-Writing 'NAMESPACE'
-Writing 'magnitude_summary.Rd'
-Writing 'cplx_shrink_chains.Rd'
-Writing 'as_draws_array.Rd'
-Writing 'mcmc_diagnostics.Rd'

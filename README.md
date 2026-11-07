@@ -1,106 +1,193 @@
-# cplxshrink
+# cplxrv
 
-Bayesian shrinkage regression for real and complex-valued data in R.
-Complex coefficients share a local shrinkage scale across their real and
-imaginary components.
+**Scale Mixtures of Complex Gaussian and Bayesian Shrinkage**
 
-- Student-t, Bayesian lasso and generalized double Pareto priors.
-- Posterior coefficient and magnitude summaries.
-- Reproducible multiple chains with R-hat, effective sample size and Monte Carlo error diagnostics.
-- Conditional-mean and posterior-predictive draws.
-- Summary, trace and density plotting methods.
+An R package implementing scale mixtures of complex Gaussian distributions for Bayesian shrinkage and variable selection in complex-valued regression models.
 
 ## Installation
 
-Requires R >= 4.1 and a C++ toolchain.
+You can install the development version of cplxrv from GitHub:
 
 ```r
-install.packages("remotes")
-remotes::install_github("Qishi7/cplxrv")
-library(cplxshrink)
+# Install devtools if you haven't already
+install.packages("devtools")
+
+# Install cplxrv
+devtools::install_github("Qishi7/cplxrv")
 ```
 
-## Quick start
+## Overview
+
+This package extends scale mixtures of normal distributions to the complex domain, providing:
+
+- **Complex Scale Mixtures**: Complex Student's t, complex Laplace, and complex Generalized Double Pareto (GDP) distributions
+- **Bayesian Shrinkage**: MCMC algorithms for complex-valued Bayesian linear regression with shrinkage priors
+- **Variable Selection**: Methods for detecting relevant predictors in complex-valued data
+- **High Performance**: C++ implementations using RcppArmadillo for computational efficiency
+
+## Key Features
+
+### Complex Distributions
+- `dcnorm()`: Complex normal density
+- Complex Student's t distribution
+- Complex multivariate Laplace distribution  
+- Complex Generalized Double Pareto (GDP) distribution
+
+### MCMC Samplers
+- `gibbs_bl_cpp_full()`: Bayesian Lasso Gibbs sampler (real-valued)
+- `gibbs_cbl_cpp_full()`: **Complex** Bayesian Lasso Gibbs sampler
+- `gibbs_t_cpp_full()`: Student's t Gibbs sampler (real-valued)
+- `gibbs_ct_cpp_full()`: **Complex** Student's t Gibbs sampler
+- `gibbs_gdp_cpp_full()`: GDP Gibbs sampler (real-valued)
+- `gibbs_cgdp_cpp_full()`: **Complex** GDP Gibbs sampler
+
+### Utility Functions
+- `cplx2real_cov()`: Convert complex covariance to real representation
+- `real2cplx_var()`: Convert real variance to complex form
+- `set_par()`: Set up parameter configurations for MCMC
+- `mse()`, `mse_sample()`: Mean squared error calculations
+- `roc()`: ROC curve analysis
+- `mcc()`: Matthews correlation coefficient
+
+## Quick Start
 
 ```r
-set.seed(42)
-n <- 100
-p <- 5
+library(cplxrv)
+library(Matrix)
+
+# Set up simulation parameters
+n <- 1000         # sample size
+p <- 10           # number of predictors
+n_mcmc <- 3000    # MCMC iterations
+sig2 <- 1         # noise variance
+rho <- 0          # correlation parameter (0 for circular case)
+
+# Define sparse coefficient vectors (first 3 non-zero)
+beta_re <- c(3, 1.5, 2, rep(0, p - 3))  # real coefficients
+beta_im <- c(3, 1.5, 2, rep(0, p - 3))  # imaginary coefficients
+
+# Generate complex-valued data
+set.seed(123)
+
+# Generate design matrix
 X <- matrix(rnorm(n * p), n, p)
-beta <- c(1 + 1i, -0.5 + 0.5i, 0, 0, 0)
-y <- drop(X %*% beta) + rnorm(n) + 1i * rnorm(n)
 
-fit <- cplx_shrink(y, X, prior = "gdp")
-coef(fit)
-coefficient_summary(fit)
-magnitude_summary(fit)
-summary(fit)
-```
+# Generate complex noise with specified correlation structure
+eps_re <- rnorm(n, 0, sqrt(sig2))
+eps_im <- rnorm(n, 0, sqrt(sig2))
 
-Choose `prior = "student"`, `"lasso"` or `"gdp"`. For scalar real regression,
-use `model = "real"` with a real response and design matrix.
+# If rho != 0, adjust for correlation between real and imaginary parts
+# For rho = 0 (circular case), real and imaginary parts are independent
 
-`magnitude_summary()` summarizes the magnitude of each posterior coefficient
-draw. This differs from taking the magnitude of the posterior mean coefficient.
+# Generate response variables
+y_re <- X %*% beta_re + eps_re
+y_im <- X %*% beta_im + eps_im
 
-## Multiple-chain diagnostics
+# Convert to vectors
+y_re <- as.vector(y_re)
+y_im <- as.vector(y_im)
 
-```r
-chains <- cplx_shrink_chains(
-  y, X, prior = "gdp", chains = 4, seed = 123,
-  iterations = 2000, warm = 500,
-  starts = lapply(c(0.2, 0.5, 1, 2), function(s) list(s = s))
+# Example 1: Complex Bayesian Lasso
+par_info <- set_par(p = p, prior = "bl", is_cplx = TRUE)
+
+result_cbl <- gibbs_cbl_cpp_full(
+  n_mcmc = n_mcmc,
+  start_lst = par_info$start_lst,
+  name_par = par_info$name_par,
+  y = c(y_re, y_im),  # stack real and imaginary parts
+  X = as.matrix(Matrix::bdiag(X, X))  # block diagonal design matrix
 )
 
-mcmc_diagnostics(chains)
-summary(chains)
-plot(chains, parameters = c("beta_re1", "s"), type = "trace")
-plot(chains, parameters = "beta_re1", type = "density")
+# Add parameter names
+colnames(result_cbl$draws) <- par_info$name_par
+
+# Example 2: Complex Student's t
+par_info_t <- set_par(p = p, prior = "t", is_cplx = TRUE)
+
+result_ct <- gibbs_ct_cpp_full(
+  n_mcmc = n_mcmc,
+  start_lst = par_info_t$start_lst,
+  name_par = par_info_t$name_par,
+  y = c(y_re, y_im),
+  X = as.matrix(Matrix::bdiag(X, X))
+)
+
+# Example 3: Compare with separate real-valued models
+par_info_real <- set_par(p = p, prior = "bl", is_cplx = FALSE)
+
+# Real part model
+result_re <- gibbs_bl_cpp_full(
+  n_mcmc = n_mcmc,
+  start_lst = par_info_real$start_lst,
+  name_par = par_info_real$name_par,
+  y = y_re,
+  X = X
+)
+
+# Imaginary part model  
+result_im <- gibbs_bl_cpp_full(
+  n_mcmc = n_mcmc,
+  start_lst = par_info_real$start_lst,
+  name_par = par_info_real$name_par,
+  y = y_im,
+  X = X
+)
 ```
 
-Diagnostics include rank-normalized R-hat, bulk and tail ESS, and MCSE of
-posterior means, computed with the `posterior` package. Inspect multiple chains
-and Monte Carlo error before drawing substantive conclusions.
+## Model Comparison Framework
 
-## Prediction
+The package supports three modeling approaches:
 
-```r
-newX <- X[1:2, , drop = FALSE]
+1. **Complex Model (M-Cplx)**: Joint modeling of real and imaginary parts with complex shrinkage priors
+2. **Separate Real Models (M-Re-Im)**: Independent models for real and imaginary parts
+3. **Magnitude Model (M-Mag)**: Real-valued model using magnitude data only
 
-# Conditional means: coefficient uncertainty.
-mean_draws <- predict(fit, newX, type = "mean")
+## Applications
 
-# New responses: coefficient uncertainty and observation noise.
-response_draws <- predict(fit, newX, type = "predictive", seed = 45)
-predict(fit, newX, type = "predictive", seed = 45, summary = TRUE)
+This package is particularly useful for:
+
+- **Complex-valued fMRI**: Brain activation detection using both magnitude and phase information
+- **Signal Processing**: Analysis of complex-valued signals preserving phase relationships
+- **Communications**: Processing of complex baseband signals
+- **General Complex Data**: Any application involving complex-valued observations
+
+## Advantages of Complex Modeling
+
+Research shows that complex-valued models provide:
+
+- **Better Variable Selection**: Higher F1 scores and more accurate selection of relevant predictors
+- **Improved Parameter Estimation**: Lower MSE, especially in high-dimensional settings
+- **Enhanced Prediction**: Better out-of-sample prediction performance
+- **Phase Information Preservation**: Utilizes both magnitude and phase components
+
+## Dependencies
+
+- R (>= 3.5.0)
+- Rcpp (>= 1.0.14)
+- RcppArmadillo
+- Matrix
+- stats
+- emulator
+- LaplacesDemon
+- mvtnorm
+
+## Citation
+
+If you use this package in your research, please cite:
+
+```
+Yu, C.-H. and Zhan, Q. (2025). Scale Mixtures of Complex Gaussian and Bayesian Shrinkage.
 ```
 
-Supply an unstacked design matrix in the original column order. Complex
-prediction summaries include real, imaginary and draw-wise magnitude summaries.
+## Authors
 
-## Model conventions
+- Qishi Zhan, Department of Mathematical and Statistical Sciences, Marquette University
+- Cheng-Han Yu, Department of Mathematical and Statistical Sciences, Marquette University
 
-- No intercept or preprocessing is added automatically. An explicitly included intercept is shrunk.
-- Complex likelihood relation `rho` is fixed, with `Mod(rho) < 1`.
-- Noise scale `s` gives total complex error variance `2*s`; real-model error variance is `s`.
-- Coefficient and prediction intervals are marginal intervals.
-- Package defaults differ from the manuscript's matched-prior calibration.
+## License
 
-See the [model conventions](docs/model-conventions.md),
-[manuscript calibration](docs/manuscript-calibration.md) and `?cplx_shrink`
-for details on covariance, priors, draw indexing and prediction.
+[Specify your license]
 
-## Examples and local checks
+## Issues and Contributions
 
-Run the installed feature demonstration:
-
-```r
-source(system.file("examples", "validate_new_features.R",
-                   package = "cplxshrink", mustWork = TRUE))
-```
-
-From the repository root, run the tests with:
-
-```r
-testthat::test_local(".")
-```
+Please report issues or request features at: https://github.com/Qishi7/cplxrv/issues
