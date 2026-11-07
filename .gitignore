@@ -1,0 +1,10 @@
+src/*.o
+src/*.so
+src/*.dll
+*.tar.gz
+*.Rcheck/
+.Rhistory
+.RData
+
+.Rproj.user/
+.DS_Store

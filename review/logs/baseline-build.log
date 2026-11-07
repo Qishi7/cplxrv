@@ -1,0 +1,10 @@
+During startup - Warning message:
+Setting LC_CTYPE failed, using "C" 
+* checking for file 'baseline/DESCRIPTION' ... OK
+* preparing 'cplxshrink':
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* checking for LF line-endings in source and make files and shell scripts
+* checking for empty or unneeded directories
+* building 'cplxshrink_0.1.0.tar.gz'
+

@@ -1,0 +1,11 @@
+Source export preflight and independent reproduction: PASS
+Clean exported source build/check: Status OK, 0 errors/warnings/notes.
+Original/new tests and source/installed demos: PASS; see archive-reproduction.log.
+src/canonical.cpp: byte-identical; SHA256 67f047caa0682ba8782baf6663f71ddd358ca54c5b9bf37818a0ef707e91a4d7
+R/canonical.R: byte-identical; SHA256 a212000c92b35c461517fadbd45399ac6a9cffdf86f8977ef9c34d4ff7f1730d
+src/RcppExports.cpp: byte-identical; SHA256 9d7d0870cd74326cb904dfe183f13a5064bf6db2814037d3859cbff16a872ff1
+R/RcppExports.R: byte-identical; SHA256 5e36bff757865dede588179d22fde855757aa9701b19f926d7d73cc1984808b8
+Source ZIP export uses tracked files only, plus baseline patch and SHA256SUMS.
+Compiled object/shared-library/archive files and .git directories are rejected.
+Manifest generation excludes only the manifest itself; final ZIP is unpacked and every digest verified.
+Final archive verification output is also supplied in deliverables/artifact_integrity.txt.

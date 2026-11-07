@@ -1,0 +1,208 @@
+* checking for file ‘cplxshrink/DESCRIPTION’ ... OK
+* preparing ‘cplxshrink’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* checking for LF line-endings in source and make files and shell scripts
+* checking for empty or unneeded directories
+* building ‘cplxshrink_0.1.0.9000.tar.gz’
+
+* using log directory ‘/Users/bayeslab/Documents/ChatGPT/cplx/review-reproduction/cplxshrink.Rcheck’
+* using R version 4.4.1 (2024-06-14)
+* using platform: aarch64-apple-darwin20
+* R was compiled by
+    Apple clang version 14.0.0 (clang-1400.0.29.202)
+    GNU Fortran (GCC) 12.2.0
+* running under: macOS 15.0.1
+* using session charset: UTF-8
+* checking for file ‘cplxshrink/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘cplxshrink’ version ‘0.1.0.9000’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘cplxshrink’ can be installed ... OK
+* used C++ compiler: ‘Apple clang version 15.0.0 (clang-1500.3.9.4)’
+* used SDK: ‘MacOSX14.4.sdk’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking code files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... OK
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘stage25-smoke.R’
+  Running ‘testthat.R’
+ OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: OK
+
+chain-validation: ..............................................
+coef: ...........................
+engine: ...............................................................................
+posterior: .................................................................................................................................
+prediction-methods: ......................................................................................................................
+reference: .............................................
+
+══ DONE ════════════════════════════════════════════════════════════════════════
+* installing to library ‘/Users/bayeslab/Library/R/arm64/4.4/library’
+* installing *source* package ‘cplxshrink’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘Apple clang version 15.0.0 (clang-1500.3.9.4)’
+using SDK: ‘MacOSX14.4.sdk’
+clang++ -arch arm64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG  -I'/Users/bayeslab/Library/R/arm64/4.4/library/Rcpp/include' -I'/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppArmadillo/include' -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c RcppExports.cpp -o RcppExports.o
+clang++ -arch arm64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG  -I'/Users/bayeslab/Library/R/arm64/4.4/library/Rcpp/include' -I'/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppArmadillo/include' -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c canonical.cpp -o canonical.o
+clang++ -arch arm64 -std=gnu++17 -dynamiclib -Wl,-headerpad_max_install_names -undefined dynamic_lookup -L/Library/Frameworks/R.framework/Resources/lib -L/opt/R/arm64/lib -o cplxshrink.so RcppExports.o canonical.o -L/Library/Frameworks/R.framework/Resources/lib -lRlapack -L/Library/Frameworks/R.framework/Resources/lib -lRblas -L/opt/gfortran/lib/gcc/aarch64-apple-darwin20.0/12.2.0 -L/opt/gfortran/lib -lgfortran -lemutls_w -lquadmath -F/Library/Frameworks/R.framework/.. -framework R -Wl,-framework -Wl,CoreFoundation
+installing to /Users/bayeslab/Library/R/arm64/4.4/library/00LOCK-cplxshrink/00new/cplxshrink/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (cplxshrink)
+  index coefficient      mean        sd      lower    upper     width level
+1     1      signal 1.0533636 0.4746793 0.25433641 1.912896 1.6585600  0.95
+2     2      noise1 0.3284324 0.1776220 0.07900307 0.705377 0.6263739  0.95
+3     3      noise2 0.4563248 0.2274017 0.11251956 0.937445 0.8249254  0.95
+  n_draws
+1      30
+2      30
+3      30
+  variable     rhat  ess_bulk  ess_tail  mcse_mean note
+1 beta_re1 1.025553  92.50010 129.89247 0.03372627     
+2 beta_re2 1.033465  85.82455  79.31937 0.03207211     
+3 beta_re3 1.021962 105.05981 137.19929 0.03221749     
+4 beta_im1 1.044234  77.37007 107.13023 0.03805872     
+5 beta_im2 1.007959 157.93598 140.94693 0.01855302     
+6 beta_im3 1.043563  75.52068  74.14961 0.02975139     
+  observation component       mean        sd      lower    upper    width level
+1           1      real -0.1399525 1.4087070 -3.2103866 1.541592 4.751979  0.95
+2           2      real  0.3886730 1.2926199 -1.6569910 2.813439 4.470430  0.95
+3           1 imaginary -0.3175401 0.9779900 -2.4196301 1.806353 4.225983  0.95
+4           2 imaginary  0.6909876 1.1347429 -1.4362234 2.898271 4.334495  0.95
+5           1 magnitude  1.4143859 0.9980083  0.1914352 3.458118 3.266683  0.95
+6           2 magnitude  1.6783666 0.8334641  0.4290335 3.463839 3.034806  0.95
+  n_draws
+1      30
+2      30
+3      30
+4      30
+5      30
+6      30
+cplxshrink complex gdp fit
+Design: 20 observations, 3 coefficients
+iterations       warm       thin   retained 
+        80         20          2         30 
+  parameter        mean        sd       lower     upper     width level n_draws
+1  beta_re1  0.73766899 0.3941194  0.07073978 1.3596155 1.2888757  0.95      30
+2  beta_re2  0.19743096 0.2097303 -0.23103561 0.5736771 0.8047127  0.95      30
+3  beta_re3  0.16542524 0.2462058 -0.25173295 0.7219972 0.9737301  0.95      30
+4  beta_im1  0.71105675 0.3631400  0.07562854 1.3518602 1.2762316  0.95      30
+5  beta_im2 -0.03954972 0.2391841 -0.36811734 0.3978307 0.7659480  0.95      30
+6  beta_im3  0.33119847 0.2544069 -0.23640813 0.6990873 0.9354954  0.95      30
+Draw-wise magnitudes:
+  index coefficient      mean        sd      lower    upper     width level
+1     1      signal 1.0533636 0.4746793 0.25433641 1.912896 1.6585600  0.95
+2     2      noise1 0.3284324 0.1776220 0.07900307 0.705377 0.6263739  0.95
+3     3      noise2 0.4563248 0.2274017 0.11251956 0.937445 0.8249254  0.95
+  n_draws
+1      30
+2      30
+3      30
+Not assessed from a single chain 
+Validation demo completed. Short chains do not establish convergence.
+  index coefficient      mean        sd      lower    upper     width level
+1     1      signal 1.0533636 0.4746793 0.25433641 1.912896 1.6585600  0.95
+2     2      noise1 0.3284324 0.1776220 0.07900307 0.705377 0.6263739  0.95
+3     3      noise2 0.4563248 0.2274017 0.11251956 0.937445 0.8249254  0.95
+  n_draws
+1      30
+2      30
+3      30
+  variable     rhat  ess_bulk  ess_tail  mcse_mean note
+1 beta_re1 1.025553  92.50010 129.89247 0.03372627     
+2 beta_re2 1.033465  85.82455  79.31937 0.03207211     
+3 beta_re3 1.021962 105.05981 137.19929 0.03221749     
+4 beta_im1 1.044234  77.37007 107.13023 0.03805872     
+5 beta_im2 1.007959 157.93598 140.94693 0.01855302     
+6 beta_im3 1.043563  75.52068  74.14961 0.02975139     
+  observation component       mean        sd      lower    upper    width level
+1           1      real -0.1399525 1.4087070 -3.2103866 1.541592 4.751979  0.95
+2           2      real  0.3886730 1.2926199 -1.6569910 2.813439 4.470430  0.95
+3           1 imaginary -0.3175401 0.9779900 -2.4196301 1.806353 4.225983  0.95
+4           2 imaginary  0.6909876 1.1347429 -1.4362234 2.898271 4.334495  0.95
+5           1 magnitude  1.4143859 0.9980083  0.1914352 3.458118 3.266683  0.95
+6           2 magnitude  1.6783666 0.8334641  0.4290335 3.463839 3.034806  0.95
+  n_draws
+1      30
+2      30
+3      30
+4      30
+5      30
+6      30
+cplxshrink complex gdp fit
+Design: 20 observations, 3 coefficients
+iterations       warm       thin   retained 
+        80         20          2         30 
+  parameter        mean        sd       lower     upper     width level n_draws
+1  beta_re1  0.73766899 0.3941194  0.07073978 1.3596155 1.2888757  0.95      30
+2  beta_re2  0.19743096 0.2097303 -0.23103561 0.5736771 0.8047127  0.95      30
+3  beta_re3  0.16542524 0.2462058 -0.25173295 0.7219972 0.9737301  0.95      30
+4  beta_im1  0.71105675 0.3631400  0.07562854 1.3518602 1.2762316  0.95      30
+5  beta_im2 -0.03954972 0.2391841 -0.36811734 0.3978307 0.7659480  0.95      30
+6  beta_im3  0.33119847 0.2544069 -0.23640813 0.6990873 0.9354954  0.95      30
+Draw-wise magnitudes:
+  index coefficient      mean        sd      lower    upper     width level
+1     1      signal 1.0533636 0.4746793 0.25433641 1.912896 1.6585600  0.95
+2     2      noise1 0.3284324 0.1776220 0.07900307 0.705377 0.6263739  0.95
+3     3      noise2 0.4563248 0.2274017 0.11251956 0.937445 0.8249254  0.95
+  n_draws
+1      30
+2      30
+3      30
+Not assessed from a single chain 
+Validation demo completed. Short chains do not establish convergence.

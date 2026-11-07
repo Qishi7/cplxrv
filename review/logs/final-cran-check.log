@@ -1,0 +1,211 @@
+* using log directory ‘/Users/bayeslab/Documents/ChatGPT/cplx/final-cran/cplxshrink.Rcheck’
+* using R version 4.4.1 (2024-06-14)
+* using platform: aarch64-apple-darwin20
+* R was compiled by
+    Apple clang version 14.0.0 (clang-1400.0.29.202)
+    GNU Fortran (GCC) 12.2.0
+* running under: macOS 15.0.1
+* using session charset: UTF-8
+* using option ‘--as-cran’
+* checking for file ‘cplxshrink/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘cplxshrink’ version ‘0.1.0.9000’
+* package encoding: UTF-8
+* checking CRAN incoming feasibility ... [2s/11s] NOTE
+Maintainer: ‘Cheng-Han Yu <cheng-han.yu@marquette.edu>’
+
+New submission
+
+Version contains large components (0.1.0.9000)
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘cplxshrink’ can be installed ... OK
+* used C++ compiler: ‘Apple clang version 15.0.0 (clang-1500.3.9.4)’
+* used SDK: ‘MacOSX14.4.sdk’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking for future file timestamps ... NOTE
+unable to verify current time
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... NOTE
+Files ‘README.md’ or ‘NEWS.md’ cannot be checked without ‘pandoc’ being installed.
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking code files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking use of S3 registration ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking use of SHLIB_OPENMP_*FLAGS in Makefiles ... OK
+* checking pragmas in C/C++ headers and code ... OK
+* checking compilation flags used ... OK
+* checking compiled code ... OK
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘stage25-smoke.R’
+  Running ‘testthat.R’
+ OK
+* checking PDF version of manual ... OK
+* checking HTML version of manual ... NOTE
+Found the following HTML validation problems:
+as_draws_array.html:15:44 (as_draws_array.Rd:5): Error: <main> is not recognized!
+as_draws_array.html:15:44 (as_draws_array.Rd:5): Warning: discarding unexpected <main>
+as_draws_array.html:60:1 (as_draws_array.Rd:25): Warning: discarding unexpected </main>
+as_draws_array.html:4:1 (as_draws_array.Rd:5): Warning: <link> inserting "type" attribute
+as_draws_array.html:12:1 (as_draws_array.Rd:5): Warning: <script> proprietary attribute "onload"
+as_draws_array.html:12:1 (as_draws_array.Rd:5): Warning: <script> inserting "type" attribute
+as_draws_array.html:17:1 (as_draws_array.Rd:5): Warning: <table> lacks "summary" attribute
+as_draws_array.html:35:1 (as_draws_array.Rd:10): Warning: <table> lacks "summary" attribute
+coef.cplxshrink_fit.html:15:44 (coef.cplxshrink_fit.Rd:5): Error: <main> is not recognized!
+coef.cplxshrink_fit.html:15:44 (coef.cplxshrink_fit.Rd:5): Warning: discarding unexpected <main>
+coef.cplxshrink_fit.html:56:1 (coef.cplxshrink_fit.Rd:16): Warning: discarding unexpected </main>
+coef.cplxshrink_fit.html:4:1 (coef.cplxshrink_fit.Rd:5): Warning: <link> inserting "type" attribute
+coef.cplxshrink_fit.html:12:1 (coef.cplxshrink_fit.Rd:5): Warning: <script> proprietary attribute "onload"
+coef.cplxshrink_fit.html:12:1 (coef.cplxshrink_fit.Rd:5): Warning: <script> inserting "type" attribute
+coef.cplxshrink_fit.html:17:1 (coef.cplxshrink_fit.Rd:5): Warning: <table> lacks "summary" attribute
+coef.cplxshrink_fit.html:38:1 (coef.cplxshrink_fit.Rd:10): Warning: <table> lacks "summary" attribute
+coef.cplxshrink_fit.html:43:14 (coef.cplxshrink_fit.Rd:12): Warning: <code> attribute "id" has invalid value "..."
+coefficient_summary.html:15:44 (coefficient_summary.Rd:5): Error: <main> is not recognized!
+coefficient_summary.html:15:44 (coefficient_summary.Rd:5): Warning: discarding unexpected <main>
+coefficient_summary.html:55:1 (coefficient_summary.Rd:18): Warning: discarding unexpected </main>
+coefficient_summary.html:4:1 (coefficient_summary.Rd:5): Warning: <link> inserting "type" attribute
+coefficient_summary.html:12:1 (coefficient_summary.Rd:5): Warning: <script> proprietary attribute "onload"
+coefficient_summary.html:12:1 (coefficient_summary.Rd:5): Warning: <script> inserting "type" attribute
+coefficient_summary.html:17:1 (coefficient_summary.Rd:5): Warning: <table> lacks "summary" attribute
+coefficient_summary.html:35:1 (coefficient_summary.Rd:10): Warning: <table> lacks "summary" attribute
+cplx_shrink.html:15:44 (cplx_shrink.Rd:5): Error: <main> is not recognized!
+cplx_shrink.html:15:44 (cplx_shrink.Rd:5): Warning: discarding unexpected <main>
+cplx_shrink.html:142:1 (cplx_shrink.Rd:86): Warning: discarding unexpected </main>
+cplx_shrink.html:4:1 (cplx_shrink.Rd:5): Warning: <link> inserting "type" attribute
+cplx_shrink.html:12:1 (cplx_shrink.Rd:5): Warning: <script> proprietary attribute "onload"
+cplx_shrink.html:12:1 (cplx_shrink.Rd:5): Warning: <script> inserting "type" attribute
+cplx_shrink.html:17:1 (cplx_shrink.Rd:5): Warning: <table> lacks "summary" attribute
+cplx_shrink.html:50:1 (cplx_shrink.Rd:21): Warning: <table> lacks "summary" attribute
+cplx_shrink_chains.html:15:44 (cplx_shrink_chains.Rd:5): Error: <main> is not recognized!
+cplx_shrink_chains.html:15:44 (cplx_shrink_chains.Rd:5): Warning: discarding unexpected <main>
+cplx_shrink_chains.html:124:1 (cplx_shrink_chains.Rd:67): Warning: discarding unexpected </main>
+cplx_shrink_chains.html:4:1 (cplx_shrink_chains.Rd:5): Warning: <link> inserting "type" attribute
+cplx_shrink_chains.html:12:1 (cplx_shrink_chains.Rd:5): Warning: <script> proprietary attribute "onload"
+cplx_shrink_chains.html:12:1 (cplx_shrink_chains.Rd:5): Warning: <script> inserting "type" attribute
+cplx_shrink_chains.html:17:1 (cplx_shrink_chains.Rd:5): Warning: <table> lacks "summary" attribute
+cplx_shrink_chains.html:50:1 (cplx_shrink_chains.Rd:23): Warning: <table> lacks "summary" attribute
+magnitude_summary.html:15:44 (magnitude_summary.Rd:5): Error: <main> is not recognized!
+magnitude_summary.html:15:44 (magnitude_summary.Rd:5): Warning: discarding unexpected <main>
+magnitude_summary.html:74:1 (magnitude_summary.Rd:34): Warning: discarding unexpected </main>
+magnitude_summary.html:4:1 (magnitude_summary.Rd:5): Warning: <link> inserting "type" attribute
+magnitude_summary.html:12:1 (magnitude_summary.Rd:5): Warning: <script> proprietary attribute "onload"
+magnitude_summary.html:12:1 (magnitude_summary.Rd:5): Warning: <script> inserting "type" attribute
+magnitude_summary.html:17:1 (magnitude_summary.Rd:5): Warning: <table> lacks "summary" attribute
+magnitude_summary.html:38:1 (magnitude_summary.Rd:10): Warning: <table> lacks "summary" attribute
+mcmc_diagnostics.html:15:44 (mcmc_diagnostics.Rd:5): Error: <main> is not recognized!
+mcmc_diagnostics.html:15:44 (mcmc_diagnostics.Rd:5): Warning: discarding unexpected <main>
+mcmc_diagnostics.html:69:1 (mcmc_diagnostics.Rd:31): Warning: discarding unexpected </main>
+mcmc_diagnostics.html:4:1 (mcmc_diagnostics.Rd:5): Warning: <link> inserting "type" attribute
+mcmc_diagnostics.html:12:1 (mcmc_diagnostics.Rd:5): Warning: <script> proprietary attribute "onload"
+mcmc_diagnostics.html:12:1 (mcmc_diagnostics.Rd:5): Warning: <script> inserting "type" attribute
+mcmc_diagnostics.html:17:1 (mcmc_diagnostics.Rd:5): Warning: <table> lacks "summary" attribute
+mcmc_diagnostics.html:35:1 (mcmc_diagnostics.Rd:10): Warning: <table> lacks "summary" attribute
+plot.cplxshrink_chains.html:15:44 (plot.cplxshrink_chains.Rd:5): Error: <main> is not recognized!
+plot.cplxshrink_chains.html:15:44 (plot.cplxshrink_chains.Rd:5): Warning: discarding unexpected <main>
+plot.cplxshrink_chains.html:72:1 (plot.cplxshrink_chains.Rd:30): Warning: discarding unexpected </main>
+plot.cplxshrink_chains.html:4:1 (plot.cplxshrink_chains.Rd:5): Warning: <link> inserting "type" attribute
+plot.cplxshrink_chains.html:12:1 (plot.cplxshrink_chains.Rd:5): Warning: <script> proprietary attribute "onload"
+plot.cplxshrink_chains.html:12:1 (plot.cplxshrink_chains.Rd:5): Warning: <script> inserting "type" attribute
+plot.cplxshrink_chains.html:17:1 (plot.cplxshrink_chains.Rd:5): Warning: <table> lacks "summary" attribute
+plot.cplxshrink_chains.html:36:1 (plot.cplxshrink_chains.Rd:10): Warning: <table> lacks "summary" attribute
+plot.cplxshrink_chains.html:50:14 (plot.cplxshrink_chains.Rd:17): Warning: <code> attribute "id" has invalid value "..."
+plot.cplxshrink_fit.html:15:44 (plot.cplxshrink_fit.Rd:5): Error: <main> is not recognized!
+plot.cplxshrink_fit.html:15:44 (plot.cplxshrink_fit.Rd:5): Warning: discarding unexpected <main>
+plot.cplxshrink_fit.html:78:1 (plot.cplxshrink_fit.Rd:33): Warning: discarding unexpected </main>
+plot.cplxshrink_fit.html:4:1 (plot.cplxshrink_fit.Rd:5): Warning: <link> inserting "type" attribute
+plot.cplxshrink_fit.html:12:1 (plot.cplxshrink_fit.Rd:5): Warning: <script> proprietary attribute "onload"
+plot.cplxshrink_fit.html:12:1 (plot.cplxshrink_fit.Rd:5): Warning: <script> inserting "type" attribute
+plot.cplxshrink_fit.html:17:1 (plot.cplxshrink_fit.Rd:5): Warning: <table> lacks "summary" attribute
+plot.cplxshrink_fit.html:36:1 (plot.cplxshrink_fit.Rd:10): Warning: <table> lacks "summary" attribute
+plot.cplxshrink_fit.html:50:14 (plot.cplxshrink_fit.Rd:17): Warning: <code> attribute "id" has invalid value "..."
+predict.cplxshrink_fit.html:15:44 (predict.cplxshrink_fit.Rd:5): Error: <main> is not recognized!
+predict.cplxshrink_fit.html:15:44 (predict.cplxshrink_fit.Rd:5): Warning: discarding unexpected <main>
+predict.cplxshrink_fit.html:112:1 (predict.cplxshrink_fit.Rd:61): Warning: discarding unexpected </main>
+predict.cplxshrink_fit.html:4:1 (predict.cplxshrink_fit.Rd:5): Warning: <link> inserting "type" attribute
+predict.cplxshrink_fit.html:12:1 (predict.cplxshrink_fit.Rd:5): Warning: <script> proprietary attribute "onload"
+predict.cplxshrink_fit.html:12:1 (predict.cplxshrink_fit.Rd:5): Warning: <script> inserting "type" attribute
+predict.cplxshrink_fit.html:17:1 (predict.cplxshrink_fit.Rd:5): Warning: <table> lacks "summary" attribute
+predict.cplxshrink_fit.html:45:1 (predict.cplxshrink_fit.Rd:18): Warning: <table> lacks "summary" attribute
+predict.cplxshrink_fit.html:75:14 (predict.cplxshrink_fit.Rd:35): Warning: <code> attribute "id" has invalid value "..."
+print.summary.cplxshrink_chains.html:15:44 (print.summary.cplxshrink_chains.Rd:5): Error: <main> is not recognized!
+print.summary.cplxshrink_chains.html:15:44 (print.summary.cplxshrink_chains.Rd:5): Warning: discarding unexpected <main>
+print.summary.cplxshrink_chains.html:53:1 (print.summary.cplxshrink_chains.Rd:15): Warning: discarding unexpected </main>
+print.summary.cplxshrink_chains.html:4:1 (print.summary.cplxshrink_chains.Rd:5): Warning: <link> inserting "type" attribute
+print.summary.cplxshrink_chains.html:12:1 (print.summary.cplxshrink_chains.Rd:5): Warning: <script> proprietary attribute "onload"
+print.summary.cplxshrink_chains.html:12:1 (print.summary.cplxshrink_chains.Rd:5): Warning: <script> inserting "type" attribute
+print.summary.cplxshrink_chains.html:17:1 (print.summary.cplxshrink_chains.Rd:5): Warning: <table> lacks "summary" attribute
+print.summary.cplxshrink_chains.html:36:1 (print.summary.cplxshrink_chains.Rd:10): Warning: <table> lacks "summary" attribute
+print.summary.cplxshrink_chains.html:41:14 (print.summary.cplxshrink_chains.Rd:12): Warning: <code> attribute "id" has invalid value "..."
+print.summary.cplxshrink_fit.html:15:44 (print.summary.cplxshrink_fit.Rd:5): Error: <main> is not recognized!
+print.summary.cplxshrink_fit.html:15:44 (print.summary.cplxshrink_fit.Rd:5): Warning: discarding unexpected <main>
+print.summary.cplxshrink_fit.html:53:1 (print.summary.cplxshrink_fit.Rd:15): Warning: discarding unexpected </main>
+print.summary.cplxshrink_fit.html:4:1 (print.summary.cplxshrink_fit.Rd:5): Warning: <link> inserting "type" attribute
+print.summary.cplxshrink_fit.html:12:1 (print.summary.cplxshrink_fit.Rd:5): Warning: <script> proprietary attribute "onload"
+print.summary.cplxshrink_fit.html:12:1 (print.summary.cplxshrink_fit.Rd:5): Warning: <script> inserting "type" attribute
+print.summary.cplxshrink_fit.html:17:1 (print.summary.cplxshrink_fit.Rd:5): Warning: <table> lacks "summary" attribute
+print.summary.cplxshrink_fit.html:36:1 (print.summary.cplxshrink_fit.Rd:10): Warning: <table> lacks "summary" attribute
+print.summary.cplxshrink_fit.html:41:14 (print.summary.cplxshrink_fit.Rd:12): Warning: <code> attribute "id" has invalid value "..."
+summary.cplxshrink_chains.html:15:44 (summary.cplxshrink_chains.Rd:5): Error: <main> is not recognized!
+summary.cplxshrink_chains.html:15:44 (summary.cplxshrink_chains.Rd:5): Warning: discarding unexpected <main>
+summary.cplxshrink_chains.html:67:1 (summary.cplxshrink_chains.Rd:27): Warning: discarding unexpected </main>
+summary.cplxshrink_chains.html:4:1 (summary.cplxshrink_chains.Rd:5): Warning: <link> inserting "type" attribute
+summary.cplxshrink_chains.html:12:1 (summary.cplxshrink_chains.Rd:5): Warning: <script> proprietary attribute "onload"
+summary.cplxshrink_chains.html:12:1 (summary.cplxshrink_chains.Rd:5): Warning: <script> inserting "type" attribute
+summary.cplxshrink_chains.html:17:1 (summary.cplxshrink_chains.Rd:5): Warning: <table> lacks "summary" attribute
+summary.cplxshrink_chains.html:36:1 (summary.cplxshrink_chains.Rd:10): Warning: <table> lacks "summary" attribute
+summary.cplxshrink_chains.html:45:14 (summary.cplxshrink_chains.Rd:14): Warning: <code> attribute "id" has invalid value "..."
+summary.cplxshrink_fit.html:15:44 (summary.cplxshrink_fit.Rd:5): Error: <main> is not recognized!
+summary.cplxshrink_fit.html:15:44 (summary.cplxshrink_fit.Rd:5): Warning: discarding unexpected <main>
+summary.cplxshrink_fit.html:66:1 (summary.cplxshrink_fit.Rd:26): Warning: discarding unexpected </main>
+summary.cplxshrink_fit.html:4:1 (summary.cplxshrink_fit.Rd:5): Warning: <link> inserting "type" attribute
+summary.cplxshrink_fit.html:12:1 (summary.cplxshrink_fit.Rd:5): Warning: <script> proprietary attribute "onload"
+summary.cplxshrink_fit.html:12:1 (summary.cplxshrink_fit.Rd:5): Warning: <script> inserting "type" attribute
+summary.cplxshrink_fit.html:17:1 (summary.cplxshrink_fit.Rd:5): Warning: <table> lacks "summary" attribute
+summary.cplxshrink_fit.html:36:1 (summary.cplxshrink_fit.Rd:10): Warning: <table> lacks "summary" attribute
+summary.cplxshrink_fit.html:45:14 (summary.cplxshrink_fit.Rd:14): Warning: <code> attribute "id" has invalid value "..."
+* checking for non-standard things in the check directory ... OK
+* checking for detritus in the temp directory ... OK
+* DONE
+
+Status: 4 NOTEs
+See
+  ‘/Users/bayeslab/Documents/ChatGPT/cplx/final-cran/cplxshrink.Rcheck/00check.log’
+for details.
+

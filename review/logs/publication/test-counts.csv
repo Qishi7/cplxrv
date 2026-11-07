@@ -1,0 +1,19 @@
+"file","test","nb","failed","skipped","error","warning","passed"
+"test-chain-validation.R","multi-coefficient chains expose exact variables and reject inconsistent structure",46,0,FALSE,FALSE,0,46
+"test-coef.R","coef pairs coordinates in design-column order",3,0,FALSE,FALSE,0,3
+"test-coef.R","coef is available for each fitted model and leaves draws and RNG intact",24,0,FALSE,FALSE,0,24
+"test-engine.R","dimensions, proper priors, schedules and fixed relation are enforced",60,0,FALSE,FALSE,0,60
+"test-engine.R","complex and structured-real likelihood and posterior parameters agree",10,0,FALSE,FALSE,0,10
+"test-engine.R","lasso global conditional uses dimension-consistent gamma shape",4,0,FALSE,FALSE,0,4
+"test-engine.R","GDP joint restoration has the correct collapsed gamma conditional",5,0,FALSE,FALSE,0,5
+"test-posterior.R","magnitude uses draw-wise modulus with independent hand oracles",16,0,FALSE,FALSE,0,16
+"test-posterior.R","magnitude rejects unsupported and malformed inputs",13,0,FALSE,FALSE,0,13
+"test-posterior.R","streams reproduce fits and preserve caller RNG and iteration ordering",63,0,FALSE,FALSE,0,63
+"test-posterior.R","diagnostics match independently constructed posterior arrays",20,0,FALSE,FALSE,0,20
+"test-posterior.R","chain validation errors restore RNG including previously absent state",17,0,FALSE,FALSE,0,17
+"test-prediction-methods.R","complex mean prediction matches independent complex multiplication",11,0,FALSE,FALSE,0,11
+"test-prediction-methods.R","predictive covariance matches nonzero relation and real variance",11,0,FALSE,FALSE,0,11
+"test-prediction-methods.R","prediction rejects invalid inputs and mismatched columns",14,0,FALSE,FALSE,0,14
+"test-prediction-methods.R","summaries and plots work for single and multiple chains headlessly",82,0,FALSE,FALSE,0,82
+"test-reference.R","six samplers reproduce independent posterior quadrature moments",40,0,FALSE,FALSE,0,40
+"test-reference.R","GDP complete transition preserves independent reference moments",5,0,FALSE,FALSE,0,5

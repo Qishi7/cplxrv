@@ -1,0 +1,73 @@
+coef: ...........................
+engine: ...............................................................................
+posterior: .............................................................................................123456789abc........................
+reference: .............................................
+
+══ Failed ══════════════════════════════════════════════════════════════════════
+── 1. Failure ('test-posterior.R:82:5'): diagnostics match independently constru
+dg$rhat[j] (`actual`) not equal to posterior::rhat(oracle[, , j]) (`expected`).
+
+  `actual`: 1.0009
+`expected`: 0.9990
+
+── 2. Failure ('test-posterior.R:83:5'): diagnostics match independently constru
+dg$ess_bulk[j] (`actual`) not equal to posterior::ess_bulk(oracle[, , j]) (`expected`).
+
+  `actual`: 879.0
+`expected`: 868.5
+
+── 3. Failure ('test-posterior.R:84:5'): diagnostics match independently constru
+dg$ess_tail[j] (`actual`) not equal to posterior::ess_tail(oracle[, , j]) (`expected`).
+
+  `actual`: 813.8
+`expected`: 800.9
+
+── 4. Failure ('test-posterior.R:85:5'): diagnostics match independently constru
+dg$mcse_mean[j] (`actual`) not equal to posterior::mcse_mean(oracle[, , j]) (`expected`).
+
+  `actual`: 0.03309
+`expected`: 0.03328
+
+── 5. Failure ('test-posterior.R:82:5'): diagnostics match independently constru
+dg$rhat[j] (`actual`) not equal to posterior::rhat(oracle[, , j]) (`expected`).
+
+  `actual`: 0.99901
+`expected`: 0.99888
+
+── 6. Failure ('test-posterior.R:83:5'): diagnostics match independently constru
+dg$ess_bulk[j] (`actual`) not equal to posterior::ess_bulk(oracle[, , j]) (`expected`).
+
+  `actual`: 818.7
+`expected`: 795.7
+
+── 7. Failure ('test-posterior.R:84:5'): diagnostics match independently constru
+dg$ess_tail[j] (`actual`) not equal to posterior::ess_tail(oracle[, , j]) (`expected`).
+
+  `actual`: 762.3
+`expected`: 745.8
+
+── 8. Failure ('test-posterior.R:85:5'): diagnostics match independently constru
+dg$mcse_mean[j] (`actual`) not equal to posterior::mcse_mean(oracle[, , j]) (`expected`).
+
+  `actual`: 0.03464
+`expected`: 0.03492
+
+── 9. Failure ('test-posterior.R:82:5'): diagnostics match independently constru
+dg$rhat[j] (`actual`) not equal to posterior::rhat(oracle[, , j]) (`expected`).
+
+  `actual`: 0.9980
+`expected`: 1.0001
+
+── 10. Failure ('test-posterior.R:83:5'): diagnostics match independently constr
+dg$ess_bulk[j] (`actual`) not equal to posterior::ess_bulk(oracle[, , j]) (`expected`).
+
+  `actual`: 809.1
+`expected`: 796.9
+  ... and 2 more
+
+
+Maximum number of 10 failures reached, some test results may be missing.
+
+══ DONE ════════════════════════════════════════════════════════════════════════
+Error: Test failures
+Execution halted

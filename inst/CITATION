@@ -1,0 +1,4 @@
+bibentry(bibtype="Unpublished",
+  title="Paired Bayesian shrinkage for complex regression through Gaussian scale mixtures",
+  author=c(person("Cheng-Han", "Yu"), person("Qishi", "Zhan")),
+  note="Manuscript")

@@ -1,193 +1,199 @@
-# cplxrv
+# cplxshrink
 
-**Scale Mixtures of Complex Gaussian and Bayesian Shrinkage**
+Bayesian shrinkage regression for complex data with a shared local scale for
+each real/imaginary coefficient pair. Scalar real regression is also available.
+No intercept is added automatically; include a column of ones if needed
+(the intercept coefficient is then subject to the same shrinkage prior).
 
-An R package implementing scale mixtures of complex Gaussian distributions for Bayesian shrinkage and variable selection in complex-valued regression models.
+Development version **0.1.0.9000**, for review; this is not an official v0.2 release.
+The frozen manuscript baseline is upstream commit
+`d985957c4254593ae2cc5c449d6dc3d108dd1b5b` (0.1.0).
+All four certified sampler/binding files and reference fixtures are unchanged.
+This development package is hosted in Qishi7/cplxrv at the owner's request.
+The repository previously held the older cplxrv package. This replacement installs
+as **cplxshrink**: use `library(cplxshrink)`, not the former `library(cplxrv)`.
+The previous repository contents remain recoverable from commit
+`7ef7f9e3decb6294e6774d08d9444768f6ad9f58`. This is an existing repository,
+not a GitHub fork of the upstream manuscript package.
+Historical local validation reports describe the earlier, pre-upload handoff;
+see PUBLISHING_REPORT.md for this repository replacement.
 
-## Installation
+## Install
 
-You can install the development version of cplxrv from GitHub:
+A working R installation (>= 4.1) and C++ toolchain are required.
+In R, install from GitHub:
 
 ```r
-# Install devtools if you haven't already
-install.packages("devtools")
-
-# Install cplxrv
-devtools::install_github("Qishi7/cplxrv")
+install.packages("remotes")  # if needed
+remotes::install_github("Qishi7/cplxrv")
+library(cplxshrink)
 ```
 
-## Overview
+For source installation, first install `Rcpp`, `RcppArmadillo` and `posterior`.
 
-This package extends scale mixtures of normal distributions to the complex domain, providing:
+From a terminal, install the supplied source archive:
 
-- **Complex Scale Mixtures**: Complex Student's t, complex Laplace, and complex Generalized Double Pareto (GDP) distributions
-- **Bayesian Shrinkage**: MCMC algorithms for complex-valued Bayesian linear regression with shrinkage priors
-- **Variable Selection**: Methods for detecting relevant predictors in complex-valued data
-- **High Performance**: C++ implementations using RcppArmadillo for computational efficiency
+```sh
+R CMD INSTALL cplxshrink_0.1.0.9000.tar.gz
+```
 
-## Key Features
+Alternatively, run `R CMD INSTALL cplxshrink` from the directory containing
+this source folder. To run its tests, also install `testthat` and `jsonlite`. Install `posterior` for diagnostics.
 
-### Complex Distributions
-- `dcnorm()`: Complex normal density
-- Complex Student's t distribution
-- Complex multivariate Laplace distribution  
-- Complex Generalized Double Pareto (GDP) distribution
-
-### MCMC Samplers
-- `gibbs_bl_cpp_full()`: Bayesian Lasso Gibbs sampler (real-valued)
-- `gibbs_cbl_cpp_full()`: **Complex** Bayesian Lasso Gibbs sampler
-- `gibbs_t_cpp_full()`: Student's t Gibbs sampler (real-valued)
-- `gibbs_ct_cpp_full()`: **Complex** Student's t Gibbs sampler
-- `gibbs_gdp_cpp_full()`: GDP Gibbs sampler (real-valued)
-- `gibbs_cgdp_cpp_full()`: **Complex** GDP Gibbs sampler
-
-### Utility Functions
-- `cplx2real_cov()`: Convert complex covariance to real representation
-- `real2cplx_var()`: Convert real variance to complex form
-- `set_par()`: Set up parameter configurations for MCMC
-- `mse()`, `mse_sample()`: Mean squared error calculations
-- `roc()`: ROC curve analysis
-- `mcc()`: Matthews correlation coefficient
-
-## Quick Start
+## Fit and summarize
 
 ```r
-library(cplxrv)
-library(Matrix)
-
-# Set up simulation parameters
-n <- 1000         # sample size
-p <- 10           # number of predictors
-n_mcmc <- 3000    # MCMC iterations
-sig2 <- 1         # noise variance
-rho <- 0          # correlation parameter (0 for circular case)
-
-# Define sparse coefficient vectors (first 3 non-zero)
-beta_re <- c(3, 1.5, 2, rep(0, p - 3))  # real coefficients
-beta_im <- c(3, 1.5, 2, rep(0, p - 3))  # imaginary coefficients
-
-# Generate complex-valued data
-set.seed(123)
-
-# Generate design matrix
+library(cplxshrink)
+set.seed(42)
+n <- 100
+p <- 5
 X <- matrix(rnorm(n * p), n, p)
-
-# Generate complex noise with specified correlation structure
-eps_re <- rnorm(n, 0, sqrt(sig2))
-eps_im <- rnorm(n, 0, sqrt(sig2))
-
-# If rho != 0, adjust for correlation between real and imaginary parts
-# For rho = 0 (circular case), real and imaginary parts are independent
-
-# Generate response variables
-y_re <- X %*% beta_re + eps_re
-y_im <- X %*% beta_im + eps_im
-
-# Convert to vectors
-y_re <- as.vector(y_re)
-y_im <- as.vector(y_im)
-
-# Example 1: Complex Bayesian Lasso
-par_info <- set_par(p = p, prior = "bl", is_cplx = TRUE)
-
-result_cbl <- gibbs_cbl_cpp_full(
-  n_mcmc = n_mcmc,
-  start_lst = par_info$start_lst,
-  name_par = par_info$name_par,
-  y = c(y_re, y_im),  # stack real and imaginary parts
-  X = as.matrix(Matrix::bdiag(X, X))  # block diagonal design matrix
-)
-
-# Add parameter names
-colnames(result_cbl$draws) <- par_info$name_par
-
-# Example 2: Complex Student's t
-par_info_t <- set_par(p = p, prior = "t", is_cplx = TRUE)
-
-result_ct <- gibbs_ct_cpp_full(
-  n_mcmc = n_mcmc,
-  start_lst = par_info_t$start_lst,
-  name_par = par_info_t$name_par,
-  y = c(y_re, y_im),
-  X = as.matrix(Matrix::bdiag(X, X))
-)
-
-# Example 3: Compare with separate real-valued models
-par_info_real <- set_par(p = p, prior = "bl", is_cplx = FALSE)
-
-# Real part model
-result_re <- gibbs_bl_cpp_full(
-  n_mcmc = n_mcmc,
-  start_lst = par_info_real$start_lst,
-  name_par = par_info_real$name_par,
-  y = y_re,
-  X = X
-)
-
-# Imaginary part model  
-result_im <- gibbs_bl_cpp_full(
-  n_mcmc = n_mcmc,
-  start_lst = par_info_real$start_lst,
-  name_par = par_info_real$name_par,
-  y = y_im,
-  X = X
-)
+beta <- c(1 + 1i, -0.5 + 0.5i, 0, 0, 0)
+y <- drop(X %*% beta) + rnorm(100) + 1i * rnorm(100)
+fit <- cplx_shrink(y, X, prior = "gdp")
+coef(fit)
+coefficient_summary(fit)
 ```
 
-## Model Comparison Framework
+`coef(fit)` returns posterior mean coefficients, complex for a complex fit
+and real for a real fit. `coefficient_summary()` gives means, standard
+deviations, and marginal central intervals for each real and imaginary
+coordinate. Draws remain available in `fit$beta` (real columns followed by
+imaginary columns), `fit$w`, `fit$s`, and `fit$hyper`.
 
-The package supports three modeling approaches:
+Choose `prior = "student"` (Student-t, the default), `"lasso"` (Bayesian
+lasso), or `"gdp"` (generalized double Pareto). Use `model = "real"` for
+real data. Optional `relation`, `hyper`, `iterations`, `warm`, `thin`, and
+`start` arguments control fixed error relation, prior hyperparameters, total
+iterations, warmup, thinning, and initial values; see `?cplx_shrink` for details. Set a seed immediately before fitting for repeatability.
+After installation, run the bundled demonstration:
 
-1. **Complex Model (M-Cplx)**: Joint modeling of real and imaginary parts with complex shrinkage priors
-2. **Separate Real Models (M-Re-Im)**: Independent models for real and imaginary parts
-3. **Magnitude Model (M-Mag)**: Real-valued model using magnitude data only
-
-## Applications
-
-This package is particularly useful for:
-
-- **Complex-valued fMRI**: Brain activation detection using both magnitude and phase information
-- **Signal Processing**: Analysis of complex-valued signals preserving phase relationships
-- **Communications**: Processing of complex baseband signals
-- **General Complex Data**: Any application involving complex-valued observations
-
-## Advantages of Complex Modeling
-
-Research shows that complex-valued models provide:
-
-- **Better Variable Selection**: Higher F1 scores and more accurate selection of relevant predictors
-- **Improved Parameter Estimation**: Lower MSE, especially in high-dimensional settings
-- **Enhanced Prediction**: Better out-of-sample prediction performance
-- **Phase Information Preservation**: Utilizes both magnitude and phase components
-
-## Dependencies
-
-- R (>= 3.5.0)
-- Rcpp (>= 1.0.14)
-- RcppArmadillo
-- Matrix
-- stats
-- emulator
-- LaplacesDemon
-- mvtnorm
-
-## Citation
-
-If you use this package in your research, please cite:
-
-```
-Yu, C.-H. and Zhan, Q. (2025). Scale Mixtures of Complex Gaussian and Bayesian Shrinkage.
+```r
+source(system.file("examples", "demo.R", package = "cplxshrink", mustWork = TRUE))
 ```
 
-## Authors
+## Manuscript calibration (separate from the generic demo)
 
-- Qishi Zhan, Department of Mathematical and Statistical Sciences, Marquette University
-- Cheng-Han Yu, Department of Mathematical and Statistical Sciences, Marquette University
+The primary simulation comparison uses real `X`, proper errors (`relation = 0`),
+and `a_s = b_s = 0.5` for each error variance. Specify the following `hyper`
+lists explicitly; package defaults are unchanged.
 
-## License
+| Prior | Paired complex fit (`model = "complex"`) | Each scalar fit (`model = "real"`) |
+| --- | --- | --- |
+| Student-t | `list(a_s=0.5, b_s=0.5, nu=1)` | `list(a_s=0.5, b_s=0.5, a_tau=1, b_tau=1)` |
+| Lasso | `list(a_s=0.5, b_s=0.5, r=0.5, delta=0.5)` | `list(a_s=0.5, b_s=0.5, r=0.5, delta=0.8966996574)` |
+| GDP | `list(a_s=0.5, b_s=0.5, alpha=1, eta=1)` | `list(a_s=0.5, b_s=0.5, alpha=1, eta=1.3403844863)` |
 
-[Specify your license]
+For example, using `y` and real `X` from the generic demo, the calibrated
+independent scalar GDP fits use:
 
-## Issues and Contributions
+```r
+paper_gdp <- list(a_s=0.5, b_s=0.5, alpha=1, eta=1.3403844863)
+fit_R <- cplx_shrink(Re(y), X, prior="gdp", model="real", hyper=paper_gdp)
+fit_I <- cplx_shrink(Im(y), X, prior="gdp", model="real", hyper=paper_gdp)
+```
 
-Please report issues or request features at: https://github.com/Qishi7/cplxrv/issues
+M-ReIm requires two independent fits. M-Scalar-Pooled instead requires an
+explicit block-diagonal real design and stacked response, sharing one error
+variance and, for lasso, one global rate. A single ordinary fitting call does
+not construct these simulation strategies. These parameter examples do not
+supply the paper's datasets, seed mapping, four-chain schedules, diagnostics,
+scoring, or full ablation and fMRI workflows. For the H1 sensitivity only,
+the scalar lasso uses `delta=0.5` and scalar GDP uses `eta=1`.
+
+## Parameter notation
+
+The package's noise variance `s` is the manuscript's sigma-squared (\(\sigma^2\)),
+the variance of each real error component, not total complex variance.
+`a_s` and `b_s` correspond to \(a_\sigma\) and \(b_\sigma\), with
+`s ~ IG(a_s, b_s)` and density proportional to `s^(-a_s-1)*exp(-b_s/s)`.
+`w` denotes the local scale. Complex Student `nu` is \(\nu\); scalar Student
+`a_tau` and `b_tau` are the shape and scale of the inverse-gamma local scale
+(`a_tau=b_tau=1` gives the paper's scalar t with two degrees of freedom).
+Lasso `delta` is \(\delta_L\), the rate in `L ~ Gamma(r, delta)`;
+GDP `alpha` and `eta` are the shape and rate in `lambda[j] ~ Gamma(alpha, eta)`.
+
+## Limits
+
+The likelihood relation is fixed, with modulus below one; coefficient priors
+are proper. The noise scale `s` is real-component variance, so complex noise
+covariance is `2*s*I`. Gamma distributions use shape and rate. Hyperparameter
+defaults depend on the model; they do not automatically implement the paper's
+matched-prior comparisons. The model conventions are detailed in the function help.
+
+A short run demonstrates code use; it does not establish MCMC convergence or
+reproduce every manuscript simulation or the complete fMRI analysis. The
+package does not implement likelihood-relation learning or the full structural
+ablation workflows. Assess convergence and Monte
+Carlo error with suitable multiple-chain diagnostics for substantive inference.
+Marginal coefficient intervals are not joint selection regions. This minimal
+package contains no human data, empirical outputs, or full replication workflows.
+
+## Draw-wise magnitudes and four-chain diagnostics
+
+```r
+magnitude_summary(fit, level = 0.9)
+# mean(Mod(beta draw)), not Mod(mean(beta draw)):
+# draws 1+0i and -1+0i have mean magnitude 1, but mean coefficient 0.
+chains <- cplx_shrink_chains(y, X, prior="gdp", chains=4, seed=123,
+  iterations=1000, warm=500, thin=1,
+  starts=lapply(c(0.2, 0.5, 1, 2), function(s) list(s=s)))
+mcmc_diagnostics(chains)
+dim(as_draws_array(chains))  # retained iterations x chains x variables
+summary(chains)
+plot(chains, parameters=c("beta_re1", "s"), type="trace")
+plot(fit, parameters="beta_re1", type="density")
+```
+
+Chains run serially using separate L'Ecuyer-CMRG streams, whose initial states
+are stored in `chains$streams`. The wrapper restores caller RNG kind and state.
+`posterior` supplies rank-normalized split/folded R-hat, bulk and tail ESS, and
+MCSE of means. Variables include coefficient coordinates, s, w, prior-specific
+rates and draw-wise magnitudes (absolute coefficients for real fits).
+Undefined statistics return NA with an explanation. Fewer than two chains or
+four draws per chain return NA for all diagnostics. Summaries pool draws only
+for descriptive marginal summaries. A short run or favorable diagnostics alone
+does not establish convergence. Single-chain summaries report it as unassessed.
+Memory scales with draws x chains x variables; array conversion makes a copy.
+Plots default to four parameters and allow at most sixteen per call.
+
+## Conditional means and predictive responses
+
+```r
+newX <- X[1:2, , drop=FALSE]
+mean_draws <- predict(fit, newX, type="mean")
+response_draws <- predict(fit, newX, type="predictive", seed=45)
+predict(fit, newX, type="predictive", seed=45, summary=TRUE, level=0.9)
+summary(fit)
+```
+
+`newdata` is an original unstacked real/complex matrix in the original design
+column order; names must match when both matrices are named. There is no automatic
+intercept or preprocessing. Raw results are draws x observations. Complex
+summaries report real, imaginary and draw-wise magnitude means, SDs and marginal
+central intervals. These are not joint credible sets or activation classifications.
+Mean prediction reflects coefficient uncertainty; predictive responses additionally
+include independent observation errors conditional on each retained draw.
+For fixed `rho=a+iu`, their real-coordinate covariance is
+`s * matrix(c(1+a,u,u,1-a),2,2)`. Thus `s` is the noise component scale, marginal
+variances are `s*(1+a)` and `s*(1-a)`, and total complex variance is `2*s`.
+Real errors have variance `s`. Seeded prediction restores caller RNG state;
+`seed=NULL` advances it for predictive draws. Mean prediction uses no randomness.
+No user transformations are inverted and no fMRI original-scale prediction is claimed.
+
+Summaries require at least two finite retained draws; raw predictions support one.
+`magnitude_summary` requires a complex fit. Invalid levels, dimensions, nonfinite
+values and malformed scales produce errors. `fit$design` stores n, p and column
+names; original data are not retained. Other fitted fields and coefficient indexing
+are described above and in `?cplx_shrink`.
+
+After installing the package, run from the source folder:
+
+```sh
+Rscript examples/validate_new_features.R
+```
+
+The deterministic synthetic demonstration checks all required interfaces. It is
+software validation, not full manuscript reproduction or a convergence study.
+CI is configured for release R on Linux, macOS and Windows plus R 4.1 on Linux;
+only the local platform results in the validation reports have been executed here.
